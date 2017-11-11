@@ -524,7 +524,7 @@
 				DEVELOPMENT_TEAM = 8TW9V9HVES;
 				INFOPLIST_FILE = "Send As Post/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.andrewpbrett.Send-As-Post";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.SendAsPost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -542,7 +542,7 @@
 				DEVELOPMENT_TEAM = 8TW9V9HVES;
 				INFOPLIST_FILE = "Send As Post/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.andrewpbrett.Send-As-Post";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.SendAsPost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -558,7 +558,7 @@
 				DEVELOPMENT_TEAM = 8TW9V9HVES;
 				INFOPLIST_FILE = "Send As Post Share Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.andrewpbrett.Send-As-Post.Send-As-Post-Share-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.SendAsPost.SendAsPostShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -575,7 +575,7 @@
 				DEVELOPMENT_TEAM = 8TW9V9HVES;
 				INFOPLIST_FILE = "Send As Post Share Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.andrewpbrett.Send-As-Post.Send-As-Post-Share-Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.SendAsPost.SendAsPostShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;

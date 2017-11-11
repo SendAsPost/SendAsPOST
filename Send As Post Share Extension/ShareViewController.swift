@@ -8,6 +8,8 @@
 
 import UIKit
 import Social
+import Alamofire
+import MobileCoreServices
 
 class ShareViewController: SLComposeServiceViewController {
 
@@ -17,15 +19,45 @@ class ShareViewController: SLComposeServiceViewController {
     
     override func isContentValid() -> Bool {
         let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
-        self.reloadConfigurationItems()
         return defaults?.string(forKey: "defaultUrl") != nil
     }
     
     override func didSelectPost() {
-        // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
-        
-        // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
-        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+        let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
+        guard let items = self.extensionContext?.inputItems as? [NSExtensionItem] else { return }
+
+        for item in items {
+            if let attachments = item.attachments as? [NSItemProvider] {
+                for attachment in attachments {
+                    if attachment.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
+                        attachment.loadFileRepresentation(forTypeIdentifier: kUTTypeImage as String, completionHandler: { (url, error) in
+                            if url == nil || error != nil { return }
+                            
+                            guard let imageData = NSData.init(contentsOf: url!) as Data? else { return }
+
+                            Alamofire.upload(
+                                multipartFormData: { multipartFormData in
+                                    multipartFormData.append(self.contentText.data(using: .utf8)!, withName: "caption")
+                                    multipartFormData.append(imageData, withName: "image")
+                            },
+                                to: (defaults?.string(forKey: "defaultUrl"))!,
+                                encodingCompletion: { encodingResult in
+                                    switch encodingResult {
+                                    case .success(let upload, _, _):
+                                        upload.responseJSON { response in
+                                            debugPrint(response)
+                                        }
+                                    case .failure(let encodingError):
+                                        print(encodingError)
+                                    }
+                                    self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+                            }
+                            )
+                        })
+                    }
+                }
+            }
+        }
     }
     
     override func configurationItems() -> [Any]! {

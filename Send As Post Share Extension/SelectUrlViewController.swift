@@ -34,6 +34,7 @@ class SelectUrlViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidAppear(animated)
         self.tableView.reloadData()
         self.parentComposeServiceViewController?.reloadConfigurationItems()
+        self.parentComposeServiceViewController?.validateContent()
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,6 +75,7 @@ class SelectUrlViewController: UIViewController, UITableViewDataSource, UITableV
             defaults?.synchronize()
             self.navigationController?.popViewController(animated: true)
             self.parentComposeServiceViewController?.reloadConfigurationItems()
+            self.parentComposeServiceViewController?.validateContent()
         } else {
             self.navigationController?.pushViewController(AddUrlViewController(), animated: true)
         }

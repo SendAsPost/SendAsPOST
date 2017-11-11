@@ -6,6 +6,7 @@ target 'Send As Post' do
 
   # Pods for Send As Post
   pod 'SnapKit'
+  pod 'Alamofire'
 end
 
 target 'Send As Post Share Extension' do
@@ -13,4 +14,5 @@ target 'Send As Post Share Extension' do
 
   # Pods for Send As Post Share Extension
   pod 'SnapKit'
+  pod 'Alamofire'
 end
