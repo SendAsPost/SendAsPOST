@@ -19,7 +19,7 @@ class SelectUrlViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func urlsList() -> Array<String> {
-        let defaults = UserDefaults(suiteName: "group.sendaspost")
+        let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
         return defaults?.array(forKey: "urls") as? [String] ?? []
     }
     

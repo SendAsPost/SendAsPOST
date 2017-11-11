@@ -57,6 +57,8 @@
 		A128104C1FB6D06E001B01E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A12810541FB6D5C0001B01E4 /* AddUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUrlViewController.swift; sourceTree = "<group>"; };
 		A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUrlViewController.swift; sourceTree = "<group>"; };
+		A12810581FB6D697001B01E4 /* Send As Post Share Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Send As Post Share Extension.entitlements"; sourceTree = "<group>"; };
+		A12810591FB6D6BA001B01E4 /* Send As Post.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Send As Post.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		A128102E1FB6CFE2001B01E4 /* Send As Post */ = {
 			isa = PBXGroup;
 			children = (
+				A12810591FB6D6BA001B01E4 /* Send As Post.entitlements */,
 				A128102F1FB6CFE2001B01E4 /* AppDelegate.swift */,
 				A12810311FB6CFE2001B01E4 /* ConfigViewController.swift */,
 				A12810331FB6CFE2001B01E4 /* Main.storyboard */,
@@ -111,6 +114,7 @@
 		A12810461FB6D06E001B01E4 /* Send As Post Share Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A12810581FB6D697001B01E4 /* Send As Post Share Extension.entitlements */,
 				A12810541FB6D5C0001B01E4 /* AddUrlViewController.swift */,
 				A12810471FB6D06E001B01E4 /* ShareViewController.swift */,
 				A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */,
@@ -172,10 +176,20 @@
 					A128102B1FB6CFE2001B01E4 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					A12810441FB6D06D001B01E4 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -389,6 +403,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Send As Post/Send As Post.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8TW9V9HVES;
 				INFOPLIST_FILE = "Send As Post/Info.plist";
@@ -405,6 +420,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Send As Post/Send As Post.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8TW9V9HVES;
 				INFOPLIST_FILE = "Send As Post/Info.plist";
@@ -419,6 +435,7 @@
 		A12810511FB6D06E001B01E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Send As Post Share Extension/Send As Post Share Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8TW9V9HVES;
 				INFOPLIST_FILE = "Send As Post Share Extension/Info.plist";
@@ -434,6 +451,7 @@
 		A12810521FB6D06E001B01E4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Send As Post Share Extension/Send As Post Share Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8TW9V9HVES;
 				INFOPLIST_FILE = "Send As Post Share Extension/Info.plist";

@@ -16,7 +16,7 @@ class ShareViewController: SLComposeServiceViewController {
     }
     
     override func isContentValid() -> Bool {
-        let defaults = UserDefaults(suiteName: "group.sendaspost")
+        let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
         return defaults?.string(forKey: "defaultUrl") != nil
     }
     
@@ -30,7 +30,7 @@ class ShareViewController: SLComposeServiceViewController {
     override func configurationItems() -> [Any]! {
         let postUrlItem = SLComposeSheetConfigurationItem.init()
         postUrlItem?.title = "POST to:"
-        let defaults = UserDefaults(suiteName: "group.sendaspost")
+        let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
         postUrlItem?.value = defaults?.string(forKey: "defaultUrl") ?? "Choose URL..."
         postUrlItem?.tapHandler = {
             let viewController = SelectUrlViewController()
