@@ -17,6 +17,7 @@ class ShareViewController: SLComposeServiceViewController {
     
     override func isContentValid() -> Bool {
         let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
+        self.reloadConfigurationItems()
         return defaults?.string(forKey: "defaultUrl") != nil
     }
     
@@ -33,9 +34,13 @@ class ShareViewController: SLComposeServiceViewController {
         let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
         postUrlItem?.value = defaults?.string(forKey: "defaultUrl") ?? "Choose URL..."
         postUrlItem?.tapHandler = {
-            let viewController = SelectUrlViewController()
-            self.pushConfigurationViewController(viewController)
+            // it would be preferable to do this by overriding viewDidAppear and calling
+            // reloadConfigurationItems, but that method isn't being called when the
+            // child viewController is popped off the stack, soo....
+            let selectUrlViewController = SelectUrlViewController()
+            selectUrlViewController.parentComposeServiceViewController = self
+            self.pushConfigurationViewController(selectUrlViewController)
         }
-        return [postUrlItem]
+        return [postUrlItem as Any]
     }
 }
