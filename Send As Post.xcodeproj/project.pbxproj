@@ -15,6 +15,8 @@
 		A12810481FB6D06E001B01E4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12810471FB6D06E001B01E4 /* ShareViewController.swift */; };
 		A128104B1FB6D06E001B01E4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A12810491FB6D06E001B01E4 /* MainInterface.storyboard */; };
 		A128104F1FB6D06E001B01E4 /* Send As Post Share Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A12810451FB6D06D001B01E4 /* Send As Post Share Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A12810551FB6D5C0001B01E4 /* AddUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12810541FB6D5C0001B01E4 /* AddUrlViewController.swift */; };
+		A12810571FB6D5CD001B01E4 /* SelectUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		A12810471FB6D06E001B01E4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		A128104A1FB6D06E001B01E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		A128104C1FB6D06E001B01E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A12810541FB6D5C0001B01E4 /* AddUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUrlViewController.swift; sourceTree = "<group>"; };
+		A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUrlViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +111,9 @@
 		A12810461FB6D06E001B01E4 /* Send As Post Share Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A12810541FB6D5C0001B01E4 /* AddUrlViewController.swift */,
 				A12810471FB6D06E001B01E4 /* ShareViewController.swift */,
+				A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */,
 				A12810491FB6D06E001B01E4 /* MainInterface.storyboard */,
 				A128104C1FB6D06E001B01E4 /* Info.plist */,
 			);
@@ -227,6 +233,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A12810571FB6D5CD001B01E4 /* SelectUrlViewController.swift in Sources */,
+				A12810551FB6D5C0001B01E4 /* AddUrlViewController.swift in Sources */,
 				A12810481FB6D06E001B01E4 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

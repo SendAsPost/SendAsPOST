@@ -11,21 +11,31 @@ import Social
 
 class ShareViewController: SLComposeServiceViewController {
 
-    override func isContentValid() -> Bool {
-        // Do validation of contentText and/or NSExtensionContext attachments here
-        return true
+    override func viewDidLoad() {
+        self.placeholder = "Caption"
     }
-
+    
+    override func isContentValid() -> Bool {
+        let defaults = UserDefaults(suiteName: "group.sendaspost")
+        return defaults?.string(forKey: "defaultUrl") != nil
+    }
+    
     override func didSelectPost() {
         // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
-    
+        
         // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
-
+    
     override func configurationItems() -> [Any]! {
-        // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
-        return []
+        let postUrlItem = SLComposeSheetConfigurationItem.init()
+        postUrlItem?.title = "POST to:"
+        let defaults = UserDefaults(suiteName: "group.sendaspost")
+        postUrlItem?.value = defaults?.string(forKey: "defaultUrl") ?? "Choose URL..."
+        postUrlItem?.tapHandler = {
+            let viewController = SelectUrlViewController()
+            self.pushConfigurationViewController(viewController)
+        }
+        return [postUrlItem]
     }
-
 }
