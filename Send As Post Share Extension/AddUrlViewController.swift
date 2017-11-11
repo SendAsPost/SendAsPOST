@@ -48,7 +48,7 @@ class AddUrlViewController: UIViewController, UITextFieldDelegate {
     }
     
     func validUrl(urlString: String?) -> Bool {
-        let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
+        let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_:])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
         return NSPredicate(format: "SELF MATCHES %@", urlRegEx).evaluate(with: urlString)
     }
     
