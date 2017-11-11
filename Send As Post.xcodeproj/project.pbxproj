@@ -19,6 +19,7 @@
 		A128104F1FB6D06E001B01E4 /* Send As Post Share Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A12810451FB6D06D001B01E4 /* Send As Post Share Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A12810551FB6D5C0001B01E4 /* AddUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12810541FB6D5C0001B01E4 /* AddUrlViewController.swift */; };
 		A12810571FB6D5CD001B01E4 /* SelectUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */; };
+		A13447CD1FB730290098F365 /* EditParamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13447CC1FB730290098F365 /* EditParamViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUrlViewController.swift; sourceTree = "<group>"; };
 		A12810581FB6D697001B01E4 /* Send As Post Share Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Send As Post Share Extension.entitlements"; sourceTree = "<group>"; };
 		A12810591FB6D6BA001B01E4 /* Send As Post.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Send As Post.entitlements"; sourceTree = "<group>"; };
+		A13447CC1FB730290098F365 /* EditParamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditParamViewController.swift; sourceTree = "<group>"; };
 		B19F0F75306E8D6BA70EC33B /* Pods-Send As Post Share Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post Share Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post Share Extension/Pods-Send As Post Share Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		B38FAE3D05746BFD345B47D2 /* Pods-Send As Post Share Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post Share Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post Share Extension/Pods-Send As Post Share Extension.release.xcconfig"; sourceTree = "<group>"; };
 		DD415D4F496AEB614DA1C257 /* Pods-Send As Post.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post.release.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post/Pods-Send As Post.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				A12810591FB6D6BA001B01E4 /* Send As Post.entitlements */,
+				A13447CC1FB730290098F365 /* EditParamViewController.swift */,
 				A128102F1FB6CFE2001B01E4 /* AppDelegate.swift */,
 				A12810311FB6CFE2001B01E4 /* ConfigViewController.swift */,
 				A12810331FB6CFE2001B01E4 /* Main.storyboard */,
@@ -355,6 +358,7 @@
 			files = (
 				A12810321FB6CFE2001B01E4 /* ConfigViewController.swift in Sources */,
 				A12810301FB6CFE2001B01E4 /* AppDelegate.swift in Sources */,
+				A13447CD1FB730290098F365 /* EditParamViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

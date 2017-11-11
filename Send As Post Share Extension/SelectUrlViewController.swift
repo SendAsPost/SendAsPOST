@@ -50,6 +50,10 @@ class SelectUrlViewController: UIViewController, UITableViewDataSource, UITableV
         return self.urlsList().count + 1
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "urlCell") else { return UITableViewCell() }
         if indexPath.row < self.urlsList().count {
