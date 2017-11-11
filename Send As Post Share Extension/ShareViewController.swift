@@ -39,6 +39,13 @@ class ShareViewController: SLComposeServiceViewController {
                                 multipartFormData: { multipartFormData in
                                     multipartFormData.append(self.contentText.data(using: .utf8)!, withName: "caption")
                                     multipartFormData.append(imageData, withName: "image")
+                                    if let params = defaults?.dictionary(forKey: "additionalParams") as? [String : String] {
+                                        for key in params.keys {
+                                            if let valueData = params[key]?.data(using: .utf8) {
+                                                multipartFormData.append(valueData, withName: key)
+                                            }
+                                        }
+                                    }
                             },
                                 to: (defaults?.string(forKey: "defaultUrl"))!,
                                 encodingCompletion: { encodingResult in
