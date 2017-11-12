@@ -68,9 +68,15 @@ class ShareViewController: SLComposeServiceViewController {
                         })
                     } else {
                         attachment.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil, completionHandler: { (decoder, error) in
-                            let url = decoder as? URL
-                            if url != nil && error == nil {
-                                guard let imageData = NSData.init(contentsOf: url!) as Data? else { return }
+                            if error != nil { return }
+                            
+                            if let url = decoder as? URL {
+                                guard let imageData = NSData.init(contentsOf: url) as Data? else { return }
+                                self.uploadImage(imageData: imageData, encodingCompletion: {
+                                    self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+                                })
+                            } else if let image = decoder as? UIImage {
+                                guard let imageData = UIImageJPEGRepresentation(image, 1) else { return }
                                 self.uploadImage(imageData: imageData, encodingCompletion: {
                                     self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
                                 })
