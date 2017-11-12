@@ -22,80 +22,60 @@ class ShareViewController: SLComposeServiceViewController {
         return defaults?.string(forKey: "defaultUrl") != nil
     }
     
-    override func didSelectPost() {
+    func uploadImage(imageData : Data, encodingCompletion : (() -> Void)?) {
         let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
+        Alamofire.upload(
+            multipartFormData: { multipartFormData in
+                multipartFormData.append(self.contentText.data(using: .utf8)!, withName: "caption")
+                multipartFormData.append(imageData, withName: "image")
+                if let params = defaults?.dictionary(forKey: "additionalParams") as? [String : String] {
+                    for key in params.keys {
+                        if let valueData = params[key]?.data(using: .utf8) {
+                            multipartFormData.append(valueData, withName: key)
+                        }
+                    }
+                }
+        },
+            to: (defaults?.string(forKey: "defaultUrl"))!,
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseJSON { response in
+                        debugPrint(response)
+                    }
+                case .failure(let encodingError):
+                    print(encodingError)
+                }
+                encodingCompletion?()
+        }
+        )
+    }
+    
+    override func didSelectPost() {
         guard let items = self.extensionContext?.inputItems as? [NSExtensionItem] else { return }
 
         for item in items {
-            if let attachments = item.attachments as? [NSItemProvider] {
-                for attachment in attachments {
-                    if attachment.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
-                        if #available(iOSApplicationExtension 11.0, *) {
-                            attachment.loadFileRepresentation(forTypeIdentifier: kUTTypeImage as String, completionHandler: { (url, error) in
-                                if url == nil || error != nil { return }
-                                
+            guard let attachments = item.attachments as? [NSItemProvider] else { continue }
+            for attachment in attachments {
+                if attachment.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
+                    if #available(iOSApplicationExtension 11.0, *) {
+                        attachment.loadFileRepresentation(forTypeIdentifier: kUTTypeImage as String, completionHandler: { (url, error) in
+                            if url == nil || error != nil { return }
+                            guard let imageData = NSData.init(contentsOf: url!) as Data? else { return }
+                            self.uploadImage(imageData: imageData, encodingCompletion: {
+                                self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+                            })
+                        })
+                    } else {
+                        attachment.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil, completionHandler: { (decoder, error) in
+                            let url = decoder as? URL
+                            if url != nil && error == nil {
                                 guard let imageData = NSData.init(contentsOf: url!) as Data? else { return }
-                                
-                                Alamofire.upload(
-                                    multipartFormData: { multipartFormData in
-                                        multipartFormData.append(self.contentText.data(using: .utf8)!, withName: "caption")
-                                        multipartFormData.append(imageData, withName: "image")
-                                        if let params = defaults?.dictionary(forKey: "additionalParams") as? [String : String] {
-                                            for key in params.keys {
-                                                if let valueData = params[key]?.data(using: .utf8) {
-                                                    multipartFormData.append(valueData, withName: key)
-                                                }
-                                            }
-                                        }
-                                },
-                                    to: (defaults?.string(forKey: "defaultUrl"))!,
-                                    encodingCompletion: { encodingResult in
-                                        switch encodingResult {
-                                        case .success(let upload, _, _):
-                                            upload.responseJSON { response in
-                                                debugPrint(response)
-                                            }
-                                        case .failure(let encodingError):
-                                            print(encodingError)
-                                        }
-                                        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
-                                }
-                                )
-                            })
-                        } else {
-                            attachment.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil, completionHandler: { (decoder, error) in
-                                let url = decoder as? URL
-                                if url != nil && error == nil {
-                                    guard let imageData = NSData.init(contentsOf: url!) as Data? else { return }
-                                    print(defaults?.string(forKey: "defaultUrl"))
-                                    Alamofire.upload(
-                                        multipartFormData: { multipartFormData in
-                                            multipartFormData.append(self.contentText.data(using: .utf8)!, withName: "caption")
-                                            multipartFormData.append(imageData, withName: "image")
-                                            if let params = defaults?.dictionary(forKey: "additionalParams") as? [String : String] {
-                                                for key in params.keys {
-                                                    if let valueData = params[key]?.data(using: .utf8) {
-                                                        multipartFormData.append(valueData, withName: key)
-                                                    }
-                                                }
-                                            }
-                                    },
-                                        to: (defaults?.string(forKey: "defaultUrl"))!,
-                                        encodingCompletion: { encodingResult in
-                                            switch encodingResult {
-                                            case .success(let upload, _, _):
-                                                upload.responseJSON { response in
-                                                    debugPrint(response)
-                                                }
-                                            case .failure(let encodingError):
-                                                print(encodingError)
-                                            }
-                                            self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
-                                    }
-                                    )
-                                }
-                            })
-                        }
+                                self.uploadImage(imageData: imageData, encodingCompletion: {
+                                    self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+                                })
+                            }
+                        })
                     }
                 }
             }
