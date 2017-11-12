@@ -25,7 +25,7 @@ class EditParamViewController: UIViewController {
             if #available(iOS 11, *) {
                 make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
             } else {
-                make.top.equalTo(self.view)
+                make.top.equalTo(60)
             }
             make.left.equalTo(10)
             make.right.equalTo(-10)

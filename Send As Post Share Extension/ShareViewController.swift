@@ -30,37 +30,72 @@ class ShareViewController: SLComposeServiceViewController {
             if let attachments = item.attachments as? [NSItemProvider] {
                 for attachment in attachments {
                     if attachment.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
-                        attachment.loadFileRepresentation(forTypeIdentifier: kUTTypeImage as String, completionHandler: { (url, error) in
-                            if url == nil || error != nil { return }
-                            
-                            guard let imageData = NSData.init(contentsOf: url!) as Data? else { return }
-
-                            Alamofire.upload(
-                                multipartFormData: { multipartFormData in
-                                    multipartFormData.append(self.contentText.data(using: .utf8)!, withName: "caption")
-                                    multipartFormData.append(imageData, withName: "image")
-                                    if let params = defaults?.dictionary(forKey: "additionalParams") as? [String : String] {
-                                        for key in params.keys {
-                                            if let valueData = params[key]?.data(using: .utf8) {
-                                                multipartFormData.append(valueData, withName: key)
+                        if #available(iOSApplicationExtension 11.0, *) {
+                            attachment.loadFileRepresentation(forTypeIdentifier: kUTTypeImage as String, completionHandler: { (url, error) in
+                                if url == nil || error != nil { return }
+                                
+                                guard let imageData = NSData.init(contentsOf: url!) as Data? else { return }
+                                
+                                Alamofire.upload(
+                                    multipartFormData: { multipartFormData in
+                                        multipartFormData.append(self.contentText.data(using: .utf8)!, withName: "caption")
+                                        multipartFormData.append(imageData, withName: "image")
+                                        if let params = defaults?.dictionary(forKey: "additionalParams") as? [String : String] {
+                                            for key in params.keys {
+                                                if let valueData = params[key]?.data(using: .utf8) {
+                                                    multipartFormData.append(valueData, withName: key)
+                                                }
                                             }
                                         }
-                                    }
-                            },
-                                to: (defaults?.string(forKey: "defaultUrl"))!,
-                                encodingCompletion: { encodingResult in
-                                    switch encodingResult {
-                                    case .success(let upload, _, _):
-                                        upload.responseJSON { response in
-                                            debugPrint(response)
+                                },
+                                    to: (defaults?.string(forKey: "defaultUrl"))!,
+                                    encodingCompletion: { encodingResult in
+                                        switch encodingResult {
+                                        case .success(let upload, _, _):
+                                            upload.responseJSON { response in
+                                                debugPrint(response)
+                                            }
+                                        case .failure(let encodingError):
+                                            print(encodingError)
                                         }
-                                    case .failure(let encodingError):
-                                        print(encodingError)
+                                        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+                                }
+                                )
+                            })
+                        } else {
+                            attachment.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil, completionHandler: { (decoder, error) in
+                                let url = decoder as? URL
+                                if url != nil && error == nil {
+                                    guard let imageData = NSData.init(contentsOf: url!) as Data? else { return }
+                                    print(defaults?.string(forKey: "defaultUrl"))
+                                    Alamofire.upload(
+                                        multipartFormData: { multipartFormData in
+                                            multipartFormData.append(self.contentText.data(using: .utf8)!, withName: "caption")
+                                            multipartFormData.append(imageData, withName: "image")
+                                            if let params = defaults?.dictionary(forKey: "additionalParams") as? [String : String] {
+                                                for key in params.keys {
+                                                    if let valueData = params[key]?.data(using: .utf8) {
+                                                        multipartFormData.append(valueData, withName: key)
+                                                    }
+                                                }
+                                            }
+                                    },
+                                        to: (defaults?.string(forKey: "defaultUrl"))!,
+                                        encodingCompletion: { encodingResult in
+                                            switch encodingResult {
+                                            case .success(let upload, _, _):
+                                                upload.responseJSON { response in
+                                                    debugPrint(response)
+                                                }
+                                            case .failure(let encodingError):
+                                                print(encodingError)
+                                            }
+                                            self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
                                     }
-                                    self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
-                            }
-                            )
-                        })
+                                    )
+                                }
+                            })
+                        }
                     }
                 }
             }
