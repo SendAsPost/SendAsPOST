@@ -22,7 +22,6 @@ struct BackgroundUploader {
         sessionConfig.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
         return URLSession(configuration: sessionConfig)
     }()
-    
 }
 
 class ShareViewController: SLComposeServiceViewController {
@@ -120,7 +119,7 @@ class ShareViewController: SLComposeServiceViewController {
         request.httpMethod = "POST"
         
         var parameters = defaults?.dictionary(forKey: "additionalParams") as? [String : String] ?? [:]
-        parameters["caption"] = self.contentText
+        parameters["caption"] = self.contentText.trimmingCharacters(in: .whitespacesAndNewlines)
         request.httpBody = try createBody(with: parameters, imageData: imageData, boundary: boundary)
         
         return request
