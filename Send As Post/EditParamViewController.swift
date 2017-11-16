@@ -21,6 +21,8 @@ class EditParamViewController: UIViewController {
         self.view.addSubview(self.paramTextField)
         self.paramTextField.placeholder = "Param"
         self.paramTextField.text = self.key
+        self.paramTextField.autocapitalizationType = .none
+        self.paramTextField.autocorrectionType = .no
         self.paramTextField.snp.makeConstraints { (make) in
             if #available(iOS 11, *) {
                 make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
@@ -38,6 +40,8 @@ class EditParamViewController: UIViewController {
         self.view.addSubview(self.valueTextField)
         self.valueTextField.placeholder = "Value"
         self.valueTextField.text = self.value
+        self.valueTextField.autocapitalizationType = .none
+        self.valueTextField.autocorrectionType = .no
         self.valueTextField.snp.makeConstraints { (make) in
             make.left.equalTo(10)
             make.right.equalTo(-10)
