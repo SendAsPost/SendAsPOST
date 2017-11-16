@@ -22,6 +22,7 @@ class AddUrlViewController: UIViewController, UITextFieldDelegate {
         self.urlTextField.textColor = .black
         self.urlTextField.keyboardType = .URL
         self.urlTextField.autocapitalizationType = .none
+        self.urlTextField.autocorrectionType = .no
         self.view.addSubview(self.urlTextField)
         self.urlTextField.snp.makeConstraints { (make) in
             make.top.left.right.equalTo(0)
@@ -60,7 +61,7 @@ class AddUrlViewController: UIViewController, UITextFieldDelegate {
             urls.append(self.urlTextField.text!)
             defaults?.set(urls, forKey: "urls")
             defaults?.synchronize()
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
         } else {
             self.urlTextField.textColor = .red
         }
