@@ -40,7 +40,7 @@ class ShareViewController: SLComposeServiceViewController {
         
         do {
             let request = try self.createRequest(imageData: imageData)
-            let task = BackgroundUploader.shared.session.dataTask(with: request)
+            let task = BackgroundUploader.shared.session.uploadTask(withStreamedRequest: request)
             task.resume()
         } catch {
             //
