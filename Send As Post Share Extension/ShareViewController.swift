@@ -8,7 +8,6 @@
 
 import UIKit
 import Social
-import Alamofire
 import MobileCoreServices
 
 struct BackgroundUploader {
@@ -19,7 +18,12 @@ struct BackgroundUploader {
         let configName = "com.sendaspost.sendaspost.background"
         let sessionConfig = URLSessionConfiguration.background(withIdentifier: configName)
         sessionConfig.sharedContainerIdentifier = "group.sendaspost.sendaspost"
-        sessionConfig.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+        if let info = Bundle.main.infoDictionary {
+            let appVersion = info["CFBundleShortVersionString"] as? String ?? "Unknown version"
+            sessionConfig.httpAdditionalHeaders = [
+                "User-Agent": "Share As Post Extension \(appVersion)"
+            ]
+        }
         return URLSession(configuration: sessionConfig)
     }()
 }
@@ -36,8 +40,6 @@ class ShareViewController: SLComposeServiceViewController {
     }
     
     func uploadImage(imageData : Data, encodingCompletion : (() -> Void)?) {
-        let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
-        
         do {
             let request = try self.createRequest(imageData: imageData)
             let task = BackgroundUploader.shared.session.uploadTask(withStreamedRequest: request)
@@ -68,7 +70,6 @@ class ShareViewController: SLComposeServiceViewController {
                             if error != nil { return }
                             
                             if let url = decoder as? URL {
-//                                try Data.init(contentsOf: url, options: [])
                                 guard let imageData = NSData.init(contentsOf: url) as Data? else { return }
                                 self.uploadImage(imageData: imageData, encodingCompletion: {
                                     self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
