@@ -11,6 +11,20 @@ import Social
 import Alamofire
 import MobileCoreServices
 
+struct BackgroundUploader {
+    
+    static let shared = BackgroundUploader()
+    
+    let session: URLSession = {
+        let configName = "com.sendaspost.sendaspost.background"
+        let sessionConfig = URLSessionConfiguration.background(withIdentifier: configName)
+        sessionConfig.sharedContainerIdentifier = "group.sendaspost.sendaspost"
+        sessionConfig.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+        return URLSession(configuration: sessionConfig)
+    }()
+    
+}
+
 class ShareViewController: SLComposeServiceViewController {
 
     override func viewDidLoad() {
@@ -24,31 +38,15 @@ class ShareViewController: SLComposeServiceViewController {
     
     func uploadImage(imageData : Data, encodingCompletion : (() -> Void)?) {
         let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
-        Alamofire.upload(
-            multipartFormData: { multipartFormData in
-                multipartFormData.append(self.contentText.data(using: .utf8)!, withName: "caption")
-                multipartFormData.append(imageData, withName: "image")
-                if let params = defaults?.dictionary(forKey: "additionalParams") as? [String : String] {
-                    for key in params.keys {
-                        if let valueData = params[key]?.data(using: .utf8) {
-                            multipartFormData.append(valueData, withName: key)
-                        }
-                    }
-                }
-        },
-            to: (defaults?.string(forKey: "defaultUrl"))!,
-            encodingCompletion: { encodingResult in
-                switch encodingResult {
-                case .success(let upload, _, _):
-                    upload.responseJSON { response in
-                        debugPrint(response)
-                    }
-                case .failure(let encodingError):
-                    print(encodingError)
-                }
-                encodingCompletion?()
+        
+        do {
+            let request = try self.createRequest(imageData: imageData)
+            let task = BackgroundUploader.shared.session.dataTask(with: request)
+            task.resume()
+        } catch {
+            //
         }
-        )
+        encodingCompletion?()
     }
     
     override func didSelectPost() {
@@ -71,6 +69,7 @@ class ShareViewController: SLComposeServiceViewController {
                             if error != nil { return }
                             
                             if let url = decoder as? URL {
+//                                try Data.init(contentsOf: url, options: [])
                                 guard let imageData = NSData.init(contentsOf: url) as Data? else { return }
                                 self.uploadImage(imageData: imageData, encodingCompletion: {
                                     self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
@@ -102,5 +101,101 @@ class ShareViewController: SLComposeServiceViewController {
             self.pushConfigurationViewController(selectUrlViewController)
         }
         return [postUrlItem as Any]
+    }
+    
+    /// Create request
+    ///
+    /// - parameter userid:   The userid to be passed to web service
+    /// - parameter password: The password to be passed to web service
+    /// - parameter email:    The email address to be passed to web service
+    ///
+    /// - returns:            The NSURLRequest that was created
+    
+    func createRequest(imageData: Data) throws -> URLRequest {
+        let boundary = generateBoundaryString()
+        let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
+        
+        var request = URLRequest(url: URL(string: (defaults?.string(forKey: "defaultUrl"))!)!)
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        
+        var parameters = defaults?.dictionary(forKey: "additionalParams") as? [String : String] ?? [:]
+        parameters["caption"] = self.contentText
+        request.httpBody = try createBody(with: parameters, imageData: imageData, boundary: boundary)
+        
+        return request
+    }
+    
+    /// Create body of the multipart/form-data request
+    ///
+    /// - parameter parameters:   The optional dictionary containing keys and values to be passed to web service
+    /// - parameter filePathKey:  The optional field name to be used when uploading files. If you supply paths, you must supply filePathKey, too.
+    /// - parameter paths:        The optional array of file paths of the files to be uploaded
+    /// - parameter boundary:     The multipart/form-data boundary
+    ///
+    /// - returns:                The NSData of the body of the request
+    
+    func createBody(with parameters: [String: String]?, imageData: Data, boundary: String) throws -> Data {
+        var body = Data()
+        
+        if parameters != nil {
+            for (key, value) in parameters! {
+                body.append("--\(boundary)\r\n")
+                body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+                body.append("\(value)\r\n")
+            }
+        }
+            
+        body.append("--\(boundary)\r\n")
+        body.append("Content-Disposition: form-data; name=\"image\"\r\n")
+        body.append("Content-Type: image/jpeg\r\n\r\n")
+        body.append(imageData)
+        body.append("\r\n")
+        
+        body.append("--\(boundary)--\r\n")
+        return body
+    }
+    
+    /// Create boundary string for multipart/form-data request
+    ///
+    /// - returns:            The boundary string that consists of "Boundary-" followed by a UUID string.
+    
+    func generateBoundaryString() -> String {
+        return "Boundary-\(NSUUID().uuidString)"
+    }
+    
+    /// Determine mime type on the basis of extension of a file.
+    ///
+    /// This requires MobileCoreServices framework.
+    ///
+    /// - parameter path:         The path of the file for which we are going to determine the mime type.
+    ///
+    /// - returns:                Returns the mime type if successful. Returns application/octet-stream if unable to determine mime type.
+    
+    func mimeType(for path: String) -> String {
+        let url = NSURL(fileURLWithPath: path)
+        let pathExtension = url.pathExtension
+        
+        if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension! as NSString, nil)?.takeRetainedValue() {
+            if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
+                return mimetype as String
+            }
+        }
+        return "application/octet-stream";
+    }
+}
+
+extension Data {
+    
+    /// Append string to NSMutableData
+    ///
+    /// Rather than littering my code with calls to `dataUsingEncoding` to convert strings to NSData, and then add that data to the NSMutableData, this wraps it in a nice convenient little extension to NSMutableData. This converts using UTF-8.
+    ///
+    /// - parameter string:       The string to be added to the `NSMutableData`.
+    
+    mutating func append(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            append(data)
+        }
     }
 }
