@@ -50,38 +50,53 @@ class ShareViewController: SLComposeServiceViewController {
         encodingCompletion?()
     }
     
+    func logErrorAndCompleteRequest(error: Error?) {
+        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+    }
+    
     override func didSelectPost() {
-        guard let items = self.extensionContext?.inputItems as? [NSExtensionItem] else { return }
-
+        guard let items = self.extensionContext?.inputItems as? [NSExtensionItem] else { self.logErrorAndCompleteRequest(error: nil); return }
+        if items.count == 0 { self.logErrorAndCompleteRequest(error: nil); return }
         for item in items {
             guard let attachments = item.attachments as? [NSItemProvider] else { continue }
             for attachment in attachments {
                 if attachment.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
                     if #available(iOSApplicationExtension 11.0, *) {
                         attachment.loadFileRepresentation(forTypeIdentifier: kUTTypeImage as String, completionHandler: { (url, error) in
-                            if url == nil || error != nil { return }
-                            guard let imageData = NSData.init(contentsOf: url!) as Data? else { return }
+                            if url == nil || error != nil {
+                                self.logErrorAndCompleteRequest(error: error); return }
+                            guard let imageData = NSData.init(contentsOf: url!) as Data? else {
+                                self.logErrorAndCompleteRequest(error: error); return }
                             self.uploadImage(imageData: imageData, encodingCompletion: {
                                 self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
                             })
                         })
                     } else {
                         attachment.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil, completionHandler: { (decoder, error) in
-                            if error != nil { return }
+                            if error != nil { self.logErrorAndCompleteRequest(error: error); return }
                             
                             if let url = decoder as? URL {
-                                guard let imageData = NSData.init(contentsOf: url) as Data? else { return }
+                                guard let imageData = NSData.init(contentsOf: url) as Data? else {
+                                    self.logErrorAndCompleteRequest(error: error); return }
                                 self.uploadImage(imageData: imageData, encodingCompletion: {
                                     self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
                                 })
                             } else if let image = decoder as? UIImage {
-                                guard let imageData = UIImageJPEGRepresentation(image, 1) else { return }
+                                guard let imageData = UIImageJPEGRepresentation(image, 1) else {
+                                    self.logErrorAndCompleteRequest(error: error); return }
                                 self.uploadImage(imageData: imageData, encodingCompletion: {
                                     self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
                                 })
                             }
                         })
                     }
+                } else if attachment.hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
+                    attachment.loadItem(forTypeIdentifier: kUTTypeURL as String, options: nil, completionHandler: { (decoder, error) in
+                        if error != nil { self.logErrorAndCompleteRequest(error: error); return }
+                        guard let url = decoder as? URL else {
+                            self.logErrorAndCompleteRequest(error: error); return }
+                        print(url)
+                    })
                 }
             }
         }
