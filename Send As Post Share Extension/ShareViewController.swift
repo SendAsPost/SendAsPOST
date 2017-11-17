@@ -40,13 +40,9 @@ class ShareViewController: SLComposeServiceViewController {
     }
     
     func uploadImage(imageData : Data, encodingCompletion : (() -> Void)?) {
-        do {
-            let request = try self.createRequest(imageData: imageData)
-            let task = BackgroundUploader.shared.session.uploadTask(withStreamedRequest: request)
-            task.resume()
-        } catch {
-            //
-        }
+        let request = self.createRequest(imageData: imageData, parameters: nil)
+        let task = BackgroundUploader.shared.session.uploadTask(withStreamedRequest: request)
+        task.resume()
         encodingCompletion?()
     }
     
@@ -90,19 +86,32 @@ class ShareViewController: SLComposeServiceViewController {
                             }
                         })
                     }
-                } else if attachment.hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
-                    attachment.loadItem(forTypeIdentifier: kUTTypeURL as String, options: nil, completionHandler: { (decoder, error) in
+                } else if attachment.hasItemConformingToTypeIdentifier(kUTTypePropertyList as String) {
+                    attachment.loadItem(forTypeIdentifier: kUTTypePropertyList as String, options: nil, completionHandler: { (decoder, error) in
                         if error != nil { self.logErrorAndCompleteRequest(error: error); return }
-                        guard let url = decoder as? URL else {
+                        guard let dictionary = decoder as? NSDictionary else {
                             self.logErrorAndCompleteRequest(error: error); return }
-                        print(url)
+                        guard let results = dictionary.value(forKey: NSExtensionJavaScriptPreprocessingResultsKey) as? NSDictionary else {
+                            self.logErrorAndCompleteRequest(error: error); return }
+                        let parameters = [
+                            "url": results.value(forKey: "URL") as? String,
+                            "comment": self.contentText,
+                            "quote": results.value(forKey: "selectedText") as? String
+                        ] as? [String: String]
+                        let request = self.createRequest(imageData: nil, parameters: parameters)
+                        let task = BackgroundUploader.shared.session.uploadTask(withStreamedRequest: request)
+                        task.resume()
+                        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
                     })
+                } else {
+                    self.logErrorAndCompleteRequest(error: nil)
                 }
             }
         }
     }
     
     override func configurationItems() -> [Any]! {
+        var items: [Any] = []
         let postUrlItem = SLComposeSheetConfigurationItem.init()
         postUrlItem?.title = "POST to:"
         let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
@@ -115,7 +124,55 @@ class ShareViewController: SLComposeServiceViewController {
             selectUrlViewController.parentComposeServiceViewController = self
             self.pushConfigurationViewController(selectUrlViewController)
         }
-        return [postUrlItem as Any]
+        items.append(postUrlItem as Any)
+        
+        guard let inputItems = self.extensionContext?.inputItems as? [NSExtensionItem] else { return items }
+        if items.count == 0 { return items }
+        
+        for item in inputItems {
+            guard let attachments = item.attachments as? [NSItemProvider] else { continue }
+            for attachment in attachments {
+                if attachment.hasItemConformingToTypeIdentifier(kUTTypePropertyList as String) {
+                    self.placeholder = "Comment (optional)"
+                    self.textView.text = ""
+                    let quoteItem = SLComposeSheetConfigurationItem.init()
+                    quoteItem?.title = "Quote:"
+                    quoteItem?.tapHandler = {
+                        let editQuoteViewController = EditQuoteViewController()
+                        //                editQuoteViewController.parentComposeServiceViewController = self
+                        self.pushConfigurationViewController(editQuoteViewController)
+                    }
+                    quoteItem?.valuePending = true
+                    items.append(quoteItem as Any)
+                    
+                    attachment.loadItem(forTypeIdentifier: kUTTypePropertyList as String, options: nil, completionHandler: { (decoder, error) in
+                        if error != nil { return }
+                        guard let dictionary = decoder as? NSDictionary else { return }
+                        guard let results = dictionary.value(forKey: NSExtensionJavaScriptPreprocessingResultsKey) as? NSDictionary else { return }
+                        if let selectedText = results.value(forKey: "selectedText") as? String {
+                            quoteItem?.value = selectedText
+                            quoteItem?.valuePending = false
+                        }
+                    })
+                    
+                    let urlItem = SLComposeSheetConfigurationItem.init()
+                    urlItem?.title = "URL:"
+                    urlItem?.valuePending = true
+                    items.append(urlItem as Any)
+                    
+                    attachment.loadItem(forTypeIdentifier: kUTTypePropertyList as String, options: nil, completionHandler: { (decoder, error) in
+                        if error != nil { return }
+                        guard let dictionary = decoder as? NSDictionary else { return }
+                        guard let results = dictionary.value(forKey: NSExtensionJavaScriptPreprocessingResultsKey) as? NSDictionary else { return }
+                        if let url = results.value(forKey: "URL") as? String {
+                            urlItem?.value = url
+                            urlItem?.valuePending = false
+                        }
+                    })
+                }
+            }
+        }
+        return items
     }
     
     /// Create request
@@ -126,7 +183,7 @@ class ShareViewController: SLComposeServiceViewController {
     ///
     /// - returns:            The NSURLRequest that was created
     
-    func createRequest(imageData: Data) throws -> URLRequest {
+    func createRequest(imageData: Data?, parameters: [String: String]?) -> URLRequest {
         let boundary = generateBoundaryString()
         let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
         
@@ -134,9 +191,14 @@ class ShareViewController: SLComposeServiceViewController {
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         
-        var parameters = defaults?.dictionary(forKey: "additionalParams") as? [String : String] ?? [:]
-        parameters["caption"] = self.contentText.trimmingCharacters(in: .whitespacesAndNewlines)
-        request.httpBody = try createBody(with: parameters, imageData: imageData, boundary: boundary)
+        var additionalParameters = defaults?.dictionary(forKey: "additionalParams") as? [String : String] ?? [:]
+        additionalParameters["caption"] = self.contentText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if parameters != nil {
+            additionalParameters.merge(parameters!, uniquingKeysWith: { (key1, key2) -> String in
+                parameters![key2]!
+            })
+        }
+        request.httpBody = createBody(with: additionalParameters, imageData: imageData, boundary: boundary)
         
         return request
     }
@@ -150,7 +212,7 @@ class ShareViewController: SLComposeServiceViewController {
     ///
     /// - returns:                The NSData of the body of the request
     
-    func createBody(with parameters: [String: String]?, imageData: Data, boundary: String) throws -> Data {
+    func createBody(with parameters: [String: String]?, imageData: Data?, boundary: String) -> Data {
         var body = Data()
         
         if parameters != nil {
@@ -160,12 +222,14 @@ class ShareViewController: SLComposeServiceViewController {
                 body.append("\(value)\r\n")
             }
         }
-            
-        body.append("--\(boundary)\r\n")
-        body.append("Content-Disposition: form-data; name=\"image\"\r\n")
-        body.append("Content-Type: image/jpeg\r\n\r\n")
-        body.append(imageData)
-        body.append("\r\n")
+        
+        if imageData != nil {
+            body.append("--\(boundary)\r\n")
+            body.append("Content-Disposition: form-data; name=\"image\"\r\n")
+            body.append("Content-Type: image/jpeg\r\n\r\n")
+            body.append(imageData!)
+            body.append("\r\n")
+        }
         
         body.append("--\(boundary)--\r\n")
         return body

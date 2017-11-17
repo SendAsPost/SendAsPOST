@@ -12,7 +12,25 @@
 		<key>Send As Post.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>5</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A128102B1FB6CFE2001B01E4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A12810441FB6D06D001B01E4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A1308DF11FBEEAA3006F1464</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

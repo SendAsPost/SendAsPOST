@@ -19,6 +19,9 @@
 		A128104F1FB6D06E001B01E4 /* Send As Post Share Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A12810451FB6D06D001B01E4 /* Send As Post Share Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A12810551FB6D5C0001B01E4 /* AddUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12810541FB6D5C0001B01E4 /* AddUrlViewController.swift */; };
 		A12810571FB6D5CD001B01E4 /* SelectUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */; };
+		A1308E121FBEF6A6006F1464 /* Share.js in Resources */ = {isa = PBXBuildFile; fileRef = A1308DEC1FBEE908006F1464 /* Share.js */; };
+		A1308E141FBF42F0006F1464 /* EditQuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1308E131FBF42F0006F1464 /* EditQuoteViewController.swift */; };
+		A1308E161FBF493A006F1464 /* EditCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1308E151FBF493A006F1464 /* EditCommentViewController.swift */; };
 		A13447CD1FB730290098F365 /* EditParamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13447CC1FB730290098F365 /* EditParamViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +68,9 @@
 		A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUrlViewController.swift; sourceTree = "<group>"; };
 		A12810581FB6D697001B01E4 /* Send As Post Share Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Send As Post Share Extension.entitlements"; sourceTree = "<group>"; };
 		A12810591FB6D6BA001B01E4 /* Send As Post.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Send As Post.entitlements"; sourceTree = "<group>"; };
+		A1308DEC1FBEE908006F1464 /* Share.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Share.js; sourceTree = "<group>"; };
+		A1308E131FBF42F0006F1464 /* EditQuoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuoteViewController.swift; sourceTree = "<group>"; };
+		A1308E151FBF493A006F1464 /* EditCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommentViewController.swift; sourceTree = "<group>"; };
 		A13447CC1FB730290098F365 /* EditParamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditParamViewController.swift; sourceTree = "<group>"; };
 		B19F0F75306E8D6BA70EC33B /* Pods-Send As Post Share Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post Share Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post Share Extension/Pods-Send As Post Share Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		B38FAE3D05746BFD345B47D2 /* Pods-Send As Post Share Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post Share Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post Share Extension/Pods-Send As Post Share Extension.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +159,9 @@
 				A12810541FB6D5C0001B01E4 /* AddUrlViewController.swift */,
 				A12810471FB6D06E001B01E4 /* ShareViewController.swift */,
 				A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */,
+				A1308E131FBF42F0006F1464 /* EditQuoteViewController.swift */,
+				A1308E151FBF493A006F1464 /* EditCommentViewController.swift */,
+				A1308DEC1FBEE908006F1464 /* Share.js */,
 				A12810491FB6D06E001B01E4 /* MainInterface.storyboard */,
 				A128104C1FB6D06E001B01E4 /* Info.plist */,
 			);
@@ -267,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1308E121FBEF6A6006F1464 /* Share.js in Resources */,
 				A128104B1FB6D06E001B01E4 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,6 +379,8 @@
 				A12810571FB6D5CD001B01E4 /* SelectUrlViewController.swift in Sources */,
 				A12810551FB6D5C0001B01E4 /* AddUrlViewController.swift in Sources */,
 				A12810481FB6D06E001B01E4 /* ShareViewController.swift in Sources */,
+				A1308E141FBF42F0006F1464 /* EditQuoteViewController.swift in Sources */,
+				A1308E161FBF493A006F1464 /* EditCommentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
