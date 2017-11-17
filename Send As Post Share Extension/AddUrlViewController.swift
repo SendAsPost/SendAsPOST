@@ -8,10 +8,12 @@
 
 import UIKit
 import SnapKit
+import Social
 
 class AddUrlViewController: UIViewController, UITextFieldDelegate {
     var urlTextField = UITextField()
-
+    var parentComposeServiceViewController : SLComposeServiceViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add URL"
@@ -61,6 +63,8 @@ class AddUrlViewController: UIViewController, UITextFieldDelegate {
             urls.append(self.urlTextField.text!)
             defaults?.set(urls, forKey: "urls")
             defaults?.synchronize()
+            self.parentComposeServiceViewController?.reloadConfigurationItems()
+            self.parentComposeServiceViewController?.validateContent()
             self.navigationController?.popToRootViewController(animated: true)
         } else {
             self.urlTextField.textColor = .red

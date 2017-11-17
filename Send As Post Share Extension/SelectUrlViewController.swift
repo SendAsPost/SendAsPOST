@@ -81,7 +81,9 @@ class SelectUrlViewController: UIViewController, UITableViewDataSource, UITableV
             self.parentComposeServiceViewController?.reloadConfigurationItems()
             self.parentComposeServiceViewController?.validateContent()
         } else {
-            self.navigationController?.pushViewController(AddUrlViewController(), animated: true)
+            let addUrlViewController = AddUrlViewController()
+            addUrlViewController.parentComposeServiceViewController = self.parentComposeServiceViewController
+            self.navigationController?.pushViewController(addUrlViewController, animated: true)
         }
     }
 }
