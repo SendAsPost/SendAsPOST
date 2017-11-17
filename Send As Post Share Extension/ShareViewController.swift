@@ -96,6 +96,7 @@ class ShareViewController: SLComposeServiceViewController {
                         let parameters = [
                             "url": results.value(forKey: "URL") as? String,
                             "comment": self.contentText,
+                            "title": results.value(forKey: "title") as? String,
                             "quote": results.value(forKey: "selectedText") as? String
                         ] as? [String: String]
                         let request = self.createRequest(imageData: nil, parameters: parameters)
