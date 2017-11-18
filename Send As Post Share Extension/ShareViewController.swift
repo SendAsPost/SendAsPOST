@@ -29,6 +29,9 @@ struct BackgroundUploader {
 }
 
 class ShareViewController: SLComposeServiceViewController {
+    var pageTitle: String? {
+        didSet { self.reloadConfigurationItems() }
+    }
 
     override func viewDidLoad() {
         self.placeholder = "Caption"
@@ -96,7 +99,7 @@ class ShareViewController: SLComposeServiceViewController {
                         let parameters = [
                             "url": results.value(forKey: "URL") as? String,
                             "comment": self.contentText,
-                            "title": results.value(forKey: "title") as? String,
+                            "title": self.pageTitle ?? "",
                             "quote": results.value(forKey: "selectedText") as? String
                         ] as? [String: String]
                         let request = self.createRequest(imageData: nil, parameters: parameters)
@@ -113,7 +116,7 @@ class ShareViewController: SLComposeServiceViewController {
     
     override func configurationItems() -> [Any]! {
         var items: [Any] = []
-        let postUrlItem = SLComposeSheetConfigurationItem.init()
+        let postUrlItem = SLComposeSheetConfigurationItem()
         postUrlItem?.title = "POST to:"
         let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
         postUrlItem?.value = defaults?.string(forKey: "defaultUrl") ?? "Choose URL..."
@@ -136,13 +139,8 @@ class ShareViewController: SLComposeServiceViewController {
                 if attachment.hasItemConformingToTypeIdentifier(kUTTypePropertyList as String) {
                     self.placeholder = "Comment (optional)"
                     self.textView.text = ""
-                    let quoteItem = SLComposeSheetConfigurationItem.init()
+                    let quoteItem = SLComposeSheetConfigurationItem()
                     quoteItem?.title = "Quote:"
-                    quoteItem?.tapHandler = {
-                        let editQuoteViewController = EditQuoteViewController()
-                        //                editQuoteViewController.parentComposeServiceViewController = self
-                        self.pushConfigurationViewController(editQuoteViewController)
-                    }
                     quoteItem?.valuePending = true
                     items.append(quoteItem as Any)
                     
@@ -156,20 +154,29 @@ class ShareViewController: SLComposeServiceViewController {
                         }
                     })
                     
-                    let urlItem = SLComposeSheetConfigurationItem.init()
-                    urlItem?.title = "URL:"
-                    urlItem?.valuePending = true
-                    items.append(urlItem as Any)
+                    let titleItem = SLComposeSheetConfigurationItem()
+                    titleItem?.title = "Title:"
+                    titleItem?.valuePending = true
+                    titleItem?.tapHandler = {
+                        let editTitleViewController = EditTitleViewController()
+                        editTitleViewController.pageTitle = titleItem?.value
+                        editTitleViewController.parentComposeServiceViewController = self
+                        self.pushConfigurationViewController(editTitleViewController)
+                    }
+                    items.append(titleItem as Any)
                     
-                    attachment.loadItem(forTypeIdentifier: kUTTypePropertyList as String, options: nil, completionHandler: { (decoder, error) in
-                        if error != nil { return }
-                        guard let dictionary = decoder as? NSDictionary else { return }
-                        guard let results = dictionary.value(forKey: NSExtensionJavaScriptPreprocessingResultsKey) as? NSDictionary else { return }
-                        if let url = results.value(forKey: "URL") as? String {
-                            urlItem?.value = url
-                            urlItem?.valuePending = false
-                        }
-                    })
+                    if self.pageTitle == nil {
+                        attachment.loadItem(forTypeIdentifier: kUTTypePropertyList as String, options: nil, completionHandler: { (decoder, error) in
+                            if error != nil { return }
+                            guard let dictionary = decoder as? NSDictionary else { return }
+                            guard let results = dictionary.value(forKey: NSExtensionJavaScriptPreprocessingResultsKey) as? NSDictionary else { return }
+                            if let title = results.value(forKey: "title") as? String {
+                                titleItem?.value = title
+                                titleItem?.valuePending = false
+                                self.pageTitle = title
+                            }
+                        })
+                    }
                 }
             }
         }
