@@ -32,9 +32,14 @@ class ShareViewController: SLComposeServiceViewController {
     var pageTitle: String? {
         didSet { self.reloadConfigurationItems() }
     }
+    var savedContextText: String?
 
     override func viewDidLoad() {
         self.placeholder = "Caption"
+    }
+    
+    func saveContextText() {
+        self.savedContextText = self.textView.text
     }
     
     override func isContentValid() -> Bool {
@@ -126,6 +131,7 @@ class ShareViewController: SLComposeServiceViewController {
             // child viewController is popped off the stack, soo....
             let selectUrlViewController = SelectUrlViewController()
             selectUrlViewController.parentComposeServiceViewController = self
+            self.saveContextText()
             self.pushConfigurationViewController(selectUrlViewController)
         }
         items.append(postUrlItem as Any)
@@ -138,21 +144,7 @@ class ShareViewController: SLComposeServiceViewController {
             for attachment in attachments {
                 if attachment.hasItemConformingToTypeIdentifier(kUTTypePropertyList as String) {
                     self.placeholder = "Comment (optional)"
-                    self.textView.text = ""
-                    let quoteItem = SLComposeSheetConfigurationItem()
-                    quoteItem?.title = "Quote:"
-                    quoteItem?.valuePending = true
-                    items.append(quoteItem as Any)
-                    
-                    attachment.loadItem(forTypeIdentifier: kUTTypePropertyList as String, options: nil, completionHandler: { (decoder, error) in
-                        if error != nil { return }
-                        guard let dictionary = decoder as? NSDictionary else { return }
-                        guard let results = dictionary.value(forKey: NSExtensionJavaScriptPreprocessingResultsKey) as? NSDictionary else { return }
-                        if let selectedText = results.value(forKey: "selectedText") as? String {
-                            quoteItem?.value = selectedText
-                            quoteItem?.valuePending = false
-                        }
-                    })
+                    self.textView.text = self.savedContextText ?? ""
                     
                     let titleItem = SLComposeSheetConfigurationItem()
                     titleItem?.title = "Title:"
@@ -161,22 +153,27 @@ class ShareViewController: SLComposeServiceViewController {
                         let editTitleViewController = EditTitleViewController()
                         editTitleViewController.pageTitle = titleItem?.value
                         editTitleViewController.parentComposeServiceViewController = self
+                        self.saveContextText()
                         self.pushConfigurationViewController(editTitleViewController)
                     }
                     items.append(titleItem as Any)
                     
-                    if self.pageTitle == nil {
-                        attachment.loadItem(forTypeIdentifier: kUTTypePropertyList as String, options: nil, completionHandler: { (decoder, error) in
-                            if error != nil { return }
-                            guard let dictionary = decoder as? NSDictionary else { return }
-                            guard let results = dictionary.value(forKey: NSExtensionJavaScriptPreprocessingResultsKey) as? NSDictionary else { return }
+                    attachment.loadItem(forTypeIdentifier: kUTTypePropertyList as String, options: nil, completionHandler: { (decoder, error) in
+                        if error != nil { return }
+                        guard let dictionary = decoder as? NSDictionary else { return }
+                        guard let results = dictionary.value(forKey: NSExtensionJavaScriptPreprocessingResultsKey) as? NSDictionary else { return }
+                        
+                        if self.pageTitle == nil {
                             if let title = results.value(forKey: "title") as? String {
-                                titleItem?.value = title
-                                titleItem?.valuePending = false
+//                                DispatchQueue.main.async {
+//                                    titleItem?.value = title
+//                                    titleItem?.valuePending = false
+//                                    self.pageTitle = title
+//                                }
                                 self.pageTitle = title
                             }
-                        })
-                    }
+                        }
+                    })
                 }
             }
         }
