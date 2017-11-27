@@ -29,9 +29,7 @@ struct BackgroundUploader {
 }
 
 class ShareViewController: SLComposeServiceViewController {
-    var pageTitle: String? {
-        didSet { self.reloadConfigurationItems() }
-    }
+    var pageTitle: String?
     var savedContextText: String?
 
     override func viewDidLoad() {
@@ -165,12 +163,16 @@ class ShareViewController: SLComposeServiceViewController {
                         
                         if self.pageTitle == nil {
                             if let title = results.value(forKey: "title") as? String {
-//                                DispatchQueue.main.async {
-//                                    titleItem?.value = title
-//                                    titleItem?.valuePending = false
-//                                    self.pageTitle = title
-//                                }
-                                self.pageTitle = title
+                                DispatchQueue.main.async {
+                                    titleItem?.value = title
+                                    titleItem?.valuePending = false
+                                    self.pageTitle = title
+                                }
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                titleItem?.valuePending = false
+                                titleItem?.value = self.pageTitle
                             }
                         }
                     })
