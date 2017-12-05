@@ -17,9 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let attributes = [NSAttributedStringKey.font: UIFont.defaultFont() as Any]
+        let attributes = [NSAttributedStringKey.font: UIFont.defaultFont() as Any, NSAttributedStringKey.foregroundColor: UIColor.darkGray]
         UINavigationBar.appearance().titleTextAttributes = attributes
         UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+        UINavigationBar.appearance().tintColor = .darkGray
         return true
     }
 

@@ -7,19 +7,23 @@
 //
 
 import UIKit
-import SnapKit
 
 class LandingViewController: UIViewController {
     let margin = 10
-
-    @IBOutlet var explanationLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.title = "Send as POST"
-
-        self.view.addSubview(self.explanationLabel)
-        self.explanationLabel.snp.makeConstraints { (make) in
+        
+        let setupButton = UIButton()
+        self.view.addSubview(setupButton)
+        setupButton.setTitle("Setup", for: .normal)
+        setupButton.titleLabel?.font = UIFont.defaultFont()
+        setupButton.backgroundColor = .darkGray
+        setupButton.addTarget(self, action: #selector(self.setupButtonPressed), for: .touchUpInside)
+        setupButton.setTitleColor(.white, for: .normal)
+        setupButton.snp.makeConstraints { (make) in
             if #available(iOS 11.0, *) {
                 make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin).offset(self.margin)
                 make.left.equalTo(self.view.safeAreaLayoutGuide.snp.leftMargin).offset(self.margin)
@@ -29,23 +33,43 @@ class LandingViewController: UIViewController {
                 make.left.equalTo(self.margin)
                 make.right.equalTo(-self.margin)
             }
+            make.height.equalTo(42)
         }
         
         let paramsButton = UIButton()
         self.view.addSubview(paramsButton)
-        paramsButton.setTitleColor(.white, for: .normal)
+        paramsButton.setTitle("Parameters", for: .normal)
         paramsButton.titleLabel?.font = UIFont.defaultFont()
         paramsButton.backgroundColor = .darkGray
         paramsButton.addTarget(self, action: #selector(self.paramsButtonPressed), for: .touchUpInside)
-        paramsButton.setTitle("Add Additional Parameters", for: .normal)
+        paramsButton.setTitleColor(.white, for: .normal)
         paramsButton.snp.makeConstraints { (make) in
-            make.top.equalTo(explanationLabel.snp.bottom).offset(self.margin)
-            make.left.right.equalTo(explanationLabel)
-            make.height.equalTo(42)
+            make.top.equalTo(setupButton.snp.bottom).offset(self.margin)
+            make.height.left.right.equalTo(setupButton)
+        }
+        
+        let aboutButton = UIButton()
+        self.view.addSubview(aboutButton)
+        aboutButton.setTitle("About", for: .normal)
+        aboutButton.titleLabel?.font = UIFont.defaultFont()
+        aboutButton.backgroundColor = .darkGray
+        aboutButton.addTarget(self, action: #selector(self.aboutButtonPressed), for: .touchUpInside)
+        aboutButton.setTitleColor(.white, for: .normal)
+        aboutButton.snp.makeConstraints { (make) in
+            make.top.equalTo(paramsButton.snp.bottom).offset(self.margin)
+            make.height.left.right.equalTo(setupButton)
         }
     }
     
+    @objc func setupButtonPressed() {
+        self.navigationController?.pushViewController(SetupViewController(), animated: true)
+    }
+    
     @objc func paramsButtonPressed() {
-        self.navigationController?.pushViewController(ConfigViewController(), animated: true)
+        self.navigationController?.pushViewController(ParametersViewController(), animated: true)
+    }
+    
+    @objc func aboutButtonPressed() {
+        self.navigationController?.pushViewController(AboutViewController(), animated: true)
     }
 }

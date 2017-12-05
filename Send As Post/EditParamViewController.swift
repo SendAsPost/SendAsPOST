@@ -55,11 +55,13 @@ class EditParamViewController: UIViewController {
         saveButton.setTitle("Save", for: .normal)
         saveButton.titleLabel?.textAlignment = .center
         saveButton.titleLabel?.font = UIFont.defaultFont()
-        saveButton.setTitleColor(.black, for: .normal)
+        saveButton.setTitleColor(.white, for: .normal)
+        saveButton.backgroundColor = .darkGray
         self.view.addSubview(saveButton)
         saveButton.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.view)
             make.top.equalTo(self.valueTextField.snp.bottom).offset(10)
+            make.left.right.height.equalTo(self.valueTextField)
         }
         
         if self.key != nil {
@@ -67,24 +69,35 @@ class EditParamViewController: UIViewController {
             deleteButton.addTarget(self, action: #selector(self.deleteButtonPressed), for: .touchUpInside)
             deleteButton.setTitle("Delete", for: .normal)
             deleteButton.titleLabel?.textAlignment = .center
+            deleteButton.backgroundColor = .darkGray
             deleteButton.setTitleColor(.red, for: .normal)
             deleteButton.titleLabel?.font = UIFont.defaultFont()
             self.view.addSubview(deleteButton)
             deleteButton.snp.makeConstraints { (make) in
                 make.centerX.equalTo(self.view)
                 make.top.equalTo(saveButton.snp.bottom).offset(10)
+                make.left.right.height.equalTo(saveButton)
             }
         }
     }
     
     @objc func saveButtonPressed() {
-        if self.paramTextField.text == nil {
-            return
+        var formValid = true
+        if self.paramTextField.text == nil || self.paramTextField.text == "" {
+            self.paramTextField.layer.borderColor = UIColor.red.cgColor
+            self.paramTextField.layer.borderWidth = 1
+            formValid = false
         }
+        if self.valueTextField.text == nil || self.valueTextField.text == "" {
+            self.valueTextField.layer.borderColor = UIColor.red.cgColor
+            self.valueTextField.layer.borderWidth = 1
+            formValid = false
+        }
+        if !formValid { return }
         let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
         var params = self.additionalParams()
         params[self.paramTextField.text!] = self.valueTextField.text
-        if self.originalKey != self.paramTextField.text {
+        if self.originalKey != self.paramTextField.text && self.originalKey != nil {
             params.removeValue(forKey: self.originalKey!)
         }
         defaults?.set(params, forKey: "additionalParams")

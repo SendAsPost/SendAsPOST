@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		51B9D87A1583DDB7BE27065E /* Pods_Send_As_Post_Share_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FCA628BE9B4566E27761B48 /* Pods_Send_As_Post_Share_Extension.framework */; };
 		96CF90B808EF87455FFF64E4 /* Pods_Send_As_Post.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2C74150AA18916633C5D9D /* Pods_Send_As_Post.framework */; };
+		A12393031FD733C8006859A0 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12393021FD733C8006859A0 /* SetupViewController.swift */; };
+		A12393081FD73638006859A0 /* ParametersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12393061FD73638006859A0 /* ParametersViewController.swift */; };
+		A12393091FD73638006859A0 /* ParametersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12393071FD73638006859A0 /* ParametersViewController.xib */; };
 		A12810301FB6CFE2001B01E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A128102F1FB6CFE2001B01E4 /* AppDelegate.swift */; };
 		A12810321FB6CFE2001B01E4 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12810311FB6CFE2001B01E4 /* ConfigViewController.swift */; };
 		A12810351FB6CFE2001B01E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A12810331FB6CFE2001B01E4 /* Main.storyboard */; };
@@ -22,8 +25,9 @@
 		A1308E121FBEF6A6006F1464 /* Share.js in Resources */ = {isa = PBXBuildFile; fileRef = A1308DEC1FBEE908006F1464 /* Share.js */; };
 		A1308E141FBF42F0006F1464 /* EditTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1308E131FBF42F0006F1464 /* EditTitleViewController.swift */; };
 		A13447CD1FB730290098F365 /* EditParamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13447CC1FB730290098F365 /* EditParamViewController.swift */; };
-		A140A1921FD6F75D0068A7CB /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A140A1911FD6F75D0068A7CB /* LandingViewController.swift */; };
 		A140A1941FD70C940068A7CB /* DefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A140A1931FD70C940068A7CB /* DefaultFont.swift */; };
+		A140A1961FD7200B0068A7CB /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A140A1951FD7200B0068A7CB /* AboutViewController.swift */; };
+		A140A1981FD7328B0068A7CB /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A140A1971FD7328B0068A7CB /* LandingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +58,9 @@
 		1FCA628BE9B4566E27761B48 /* Pods_Send_As_Post_Share_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Send_As_Post_Share_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C2C74150AA18916633C5D9D /* Pods_Send_As_Post.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Send_As_Post.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB2F3B155EBCF97F0519A9C /* Pods-Send As Post.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post/Pods-Send As Post.debug.xcconfig"; sourceTree = "<group>"; };
+		A12393021FD733C8006859A0 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		A12393061FD73638006859A0 /* ParametersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersViewController.swift; sourceTree = "<group>"; };
+		A12393071FD73638006859A0 /* ParametersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParametersViewController.xib; sourceTree = "<group>"; };
 		A128102C1FB6CFE2001B01E4 /* Send As Post.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Send As Post.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A128102F1FB6CFE2001B01E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A12810311FB6CFE2001B01E4 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
@@ -72,8 +79,9 @@
 		A1308DEC1FBEE908006F1464 /* Share.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Share.js; sourceTree = "<group>"; };
 		A1308E131FBF42F0006F1464 /* EditTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTitleViewController.swift; sourceTree = "<group>"; };
 		A13447CC1FB730290098F365 /* EditParamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditParamViewController.swift; sourceTree = "<group>"; };
-		A140A1911FD6F75D0068A7CB /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		A140A1931FD70C940068A7CB /* DefaultFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFont.swift; sourceTree = "<group>"; };
+		A140A1951FD7200B0068A7CB /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		A140A1971FD7328B0068A7CB /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		B19F0F75306E8D6BA70EC33B /* Pods-Send As Post Share Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post Share Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post Share Extension/Pods-Send As Post Share Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		B38FAE3D05746BFD345B47D2 /* Pods-Send As Post Share Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post Share Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post Share Extension/Pods-Send As Post Share Extension.release.xcconfig"; sourceTree = "<group>"; };
 		DD415D4F496AEB614DA1C257 /* Pods-Send As Post.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post.release.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post/Pods-Send As Post.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,15 +151,19 @@
 			isa = PBXGroup;
 			children = (
 				A12810591FB6D6BA001B01E4 /* Send As Post.entitlements */,
+				A140A1951FD7200B0068A7CB /* AboutViewController.swift */,
 				A140A1931FD70C940068A7CB /* DefaultFont.swift */,
 				A13447CC1FB730290098F365 /* EditParamViewController.swift */,
 				A128102F1FB6CFE2001B01E4 /* AppDelegate.swift */,
 				A12810311FB6CFE2001B01E4 /* ConfigViewController.swift */,
-				A140A1911FD6F75D0068A7CB /* LandingViewController.swift */,
+				A140A1971FD7328B0068A7CB /* LandingViewController.swift */,
+				A12393021FD733C8006859A0 /* SetupViewController.swift */,
 				A12810331FB6CFE2001B01E4 /* Main.storyboard */,
 				A12810361FB6CFE2001B01E4 /* Assets.xcassets */,
 				A12810381FB6CFE2001B01E4 /* LaunchScreen.storyboard */,
 				A128103B1FB6CFE2001B01E4 /* Info.plist */,
+				A12393061FD73638006859A0 /* ParametersViewController.swift */,
+				A12393071FD73638006859A0 /* ParametersViewController.xib */,
 			);
 			path = "Send As Post";
 			sourceTree = "<group>";
@@ -269,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A12393091FD73638006859A0 /* ParametersViewController.xib in Resources */,
 				A128103A1FB6CFE2001B01E4 /* LaunchScreen.storyboard in Resources */,
 				A12810371FB6CFE2001B01E4 /* Assets.xcassets in Resources */,
 				A12810351FB6CFE2001B01E4 /* Main.storyboard in Resources */,
@@ -369,10 +382,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A140A1961FD7200B0068A7CB /* AboutViewController.swift in Sources */,
+				A140A1981FD7328B0068A7CB /* LandingViewController.swift in Sources */,
 				A12810321FB6CFE2001B01E4 /* ConfigViewController.swift in Sources */,
 				A12810301FB6CFE2001B01E4 /* AppDelegate.swift in Sources */,
+				A12393081FD73638006859A0 /* ParametersViewController.swift in Sources */,
+				A12393031FD733C8006859A0 /* SetupViewController.swift in Sources */,
 				A140A1941FD70C940068A7CB /* DefaultFont.swift in Sources */,
-				A140A1921FD6F75D0068A7CB /* LandingViewController.swift in Sources */,
 				A13447CD1FB730290098F365 /* EditParamViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
