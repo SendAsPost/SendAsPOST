@@ -60,6 +60,7 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             cell.textLabel?.text = "Add param..."
         }
+        cell.textLabel?.font = UIFont.defaultFont()
         cell.selectionStyle = .none
         return cell
     }

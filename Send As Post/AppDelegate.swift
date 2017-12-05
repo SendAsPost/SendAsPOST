@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  Send As Post
@@ -15,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let attributes = [NSAttributedStringKey.font: UIFont.defaultFont() as Any]
+        UINavigationBar.appearance().titleTextAttributes = attributes
+        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
         return true
     }
 

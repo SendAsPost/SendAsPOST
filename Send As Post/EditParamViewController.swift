@@ -21,6 +21,7 @@ class EditParamViewController: UIViewController {
         self.view.addSubview(self.paramTextField)
         self.paramTextField.placeholder = "Param"
         self.paramTextField.text = self.key
+        self.paramTextField.font = UIFont.defaultFont()
         self.paramTextField.autocapitalizationType = .none
         self.paramTextField.autocorrectionType = .no
         self.paramTextField.snp.makeConstraints { (make) in
@@ -40,6 +41,7 @@ class EditParamViewController: UIViewController {
         self.view.addSubview(self.valueTextField)
         self.valueTextField.placeholder = "Value"
         self.valueTextField.text = self.value
+        self.valueTextField.font = UIFont.defaultFont()
         self.valueTextField.autocapitalizationType = .none
         self.valueTextField.autocorrectionType = .no
         self.valueTextField.snp.makeConstraints { (make) in
@@ -53,6 +55,7 @@ class EditParamViewController: UIViewController {
         saveButton.addTarget(self, action: #selector(self.saveButtonPressed), for: .touchUpInside)
         saveButton.setTitle("Save", for: .normal)
         saveButton.titleLabel?.textAlignment = .center
+        saveButton.titleLabel?.font = UIFont.defaultFont()
         saveButton.setTitleColor(.black, for: .normal)
         self.view.addSubview(saveButton)
         saveButton.snp.makeConstraints { (make) in
@@ -66,6 +69,7 @@ class EditParamViewController: UIViewController {
             deleteButton.setTitle("Delete", for: .normal)
             deleteButton.titleLabel?.textAlignment = .center
             deleteButton.setTitleColor(.red, for: .normal)
+            deleteButton.titleLabel?.font = UIFont.defaultFont()
             self.view.addSubview(deleteButton)
             deleteButton.snp.makeConstraints { (make) in
                 make.centerX.equalTo(self.view)
