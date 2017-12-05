@@ -13,6 +13,7 @@ class EditParamViewController: UIViewController {
     var paramTextField = UITextField()
     var valueTextField = UITextField()
     var key : String?
+    var originalKey : String?
     var value : String?
     
     override func viewDidLoad() {
@@ -20,6 +21,7 @@ class EditParamViewController: UIViewController {
         self.view.backgroundColor = .white
         self.view.addSubview(self.paramTextField)
         self.paramTextField.placeholder = "Param"
+        self.originalKey = self.key
         self.paramTextField.text = self.key
         self.paramTextField.font = UIFont.defaultFont()
         self.paramTextField.autocapitalizationType = .none
@@ -28,14 +30,11 @@ class EditParamViewController: UIViewController {
             if #available(iOS 11, *) {
                 make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
             } else {
-                make.top.equalTo(60)
+                make.top.equalTo(self.topLayoutGuide.snp.bottom)
             }
             make.left.equalTo(10)
             make.right.equalTo(-10)
             make.height.equalTo(42)
-        }
-        if self.key != nil {
-            self.paramTextField.isEnabled = false
         }
         
         self.view.addSubview(self.valueTextField)
@@ -85,6 +84,9 @@ class EditParamViewController: UIViewController {
         let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
         var params = self.additionalParams()
         params[self.paramTextField.text!] = self.valueTextField.text
+        if self.originalKey != self.paramTextField.text {
+            params.removeValue(forKey: self.originalKey!)
+        }
         defaults?.set(params, forKey: "additionalParams")
         defaults?.synchronize()
         self.navigationController?.popViewController(animated: true)

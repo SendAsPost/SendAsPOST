@@ -41,6 +41,7 @@ class LandingViewController: UIViewController {
         paramsButton.snp.makeConstraints { (make) in
             make.top.equalTo(explanationLabel.snp.bottom).offset(self.margin)
             make.left.right.equalTo(explanationLabel)
+            make.height.equalTo(42)
         }
     }
     
