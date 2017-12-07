@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		51B9D87A1583DDB7BE27065E /* Pods_Send_As_Post_Share_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FCA628BE9B4566E27761B48 /* Pods_Send_As_Post_Share_Extension.framework */; };
-		96CF90B808EF87455FFF64E4 /* Pods_Send_As_Post.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2C74150AA18916633C5D9D /* Pods_Send_As_Post.framework */; };
 		A12393031FD733C8006859A0 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12393021FD733C8006859A0 /* SetupViewController.swift */; };
 		A12393081FD73638006859A0 /* ParametersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12393061FD73638006859A0 /* ParametersViewController.swift */; };
 		A12393091FD73638006859A0 /* ParametersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12393071FD73638006859A0 /* ParametersViewController.xib */; };
@@ -19,7 +17,7 @@
 		A128103A1FB6CFE2001B01E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A12810381FB6CFE2001B01E4 /* LaunchScreen.storyboard */; };
 		A12810481FB6D06E001B01E4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12810471FB6D06E001B01E4 /* ShareViewController.swift */; };
 		A128104B1FB6D06E001B01E4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A12810491FB6D06E001B01E4 /* MainInterface.storyboard */; };
-		A128104F1FB6D06E001B01E4 /* Send As Post Share Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A12810451FB6D06D001B01E4 /* Send As Post Share Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A128104F1FB6D06E001B01E4 /* SendAsPostShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A12810451FB6D06D001B01E4 /* SendAsPostShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A12810551FB6D5C0001B01E4 /* AddUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12810541FB6D5C0001B01E4 /* AddUrlViewController.swift */; };
 		A12810571FB6D5CD001B01E4 /* SelectUrlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */; };
 		A1308E121FBEF6A6006F1464 /* Share.js in Resources */ = {isa = PBXBuildFile; fileRef = A1308DEC1FBEE908006F1464 /* Share.js */; };
@@ -28,6 +26,8 @@
 		A140A1941FD70C940068A7CB /* DefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A140A1931FD70C940068A7CB /* DefaultFont.swift */; };
 		A140A1961FD7200B0068A7CB /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A140A1951FD7200B0068A7CB /* AboutViewController.swift */; };
 		A140A1981FD7328B0068A7CB /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A140A1971FD7328B0068A7CB /* LandingViewController.swift */; };
+		E2ACC1C6525FB517626F0711 /* Pods_SendAsPost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5DBCA9B50D855030A0C26C /* Pods_SendAsPost.framework */; };
+		F2EE4721C072C43A28E00646 /* Pods_SendAsPostShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C526780CFB8EA189CE5FB7 /* Pods_SendAsPostShareExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				A128104F1FB6D06E001B01E4 /* Send As Post Share Extension.appex in Embed App Extensions */,
+				A128104F1FB6D06E001B01E4 /* SendAsPostShareExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,34 +56,40 @@
 
 /* Begin PBXFileReference section */
 		1FCA628BE9B4566E27761B48 /* Pods_Send_As_Post_Share_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Send_As_Post_Share_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		248035CCA0B029DE09F94D48 /* Pods-SendAsPostShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendAsPostShareExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendAsPostShareExtension/Pods-SendAsPostShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		6C2C74150AA18916633C5D9D /* Pods_Send_As_Post.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Send_As_Post.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8569578046C9B36346451632 /* Pods-SendAsPostShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendAsPostShareExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendAsPostShareExtension/Pods-SendAsPostShareExtension.release.xcconfig"; sourceTree = "<group>"; };
+		88C526780CFB8EA189CE5FB7 /* Pods_SendAsPostShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendAsPostShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB2F3B155EBCF97F0519A9C /* Pods-Send As Post.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post/Pods-Send As Post.debug.xcconfig"; sourceTree = "<group>"; };
 		A12393021FD733C8006859A0 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		A12393061FD73638006859A0 /* ParametersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersViewController.swift; sourceTree = "<group>"; };
 		A12393071FD73638006859A0 /* ParametersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParametersViewController.xib; sourceTree = "<group>"; };
-		A128102C1FB6CFE2001B01E4 /* Send As Post.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Send As Post.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A128102C1FB6CFE2001B01E4 /* SendAsPost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SendAsPost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A128102F1FB6CFE2001B01E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A12810311FB6CFE2001B01E4 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		A12810341FB6CFE2001B01E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A12810361FB6CFE2001B01E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A12810391FB6CFE2001B01E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A128103B1FB6CFE2001B01E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A12810451FB6D06D001B01E4 /* Send As Post Share Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Send As Post Share Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A12810451FB6D06D001B01E4 /* SendAsPostShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SendAsPostShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A12810471FB6D06E001B01E4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		A128104A1FB6D06E001B01E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		A128104C1FB6D06E001B01E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A12810541FB6D5C0001B01E4 /* AddUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUrlViewController.swift; sourceTree = "<group>"; };
 		A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUrlViewController.swift; sourceTree = "<group>"; };
-		A12810581FB6D697001B01E4 /* Send As Post Share Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Send As Post Share Extension.entitlements"; sourceTree = "<group>"; };
-		A12810591FB6D6BA001B01E4 /* Send As Post.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Send As Post.entitlements"; sourceTree = "<group>"; };
+		A12810581FB6D697001B01E4 /* SendAsPostShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SendAsPostShareExtension.entitlements; sourceTree = "<group>"; };
+		A12810591FB6D6BA001B01E4 /* SendAsPost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SendAsPost.entitlements; sourceTree = "<group>"; };
 		A1308DEC1FBEE908006F1464 /* Share.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Share.js; sourceTree = "<group>"; };
 		A1308E131FBF42F0006F1464 /* EditTitleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTitleViewController.swift; sourceTree = "<group>"; };
 		A13447CC1FB730290098F365 /* EditParamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditParamViewController.swift; sourceTree = "<group>"; };
 		A140A1931FD70C940068A7CB /* DefaultFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFont.swift; sourceTree = "<group>"; };
 		A140A1951FD7200B0068A7CB /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A140A1971FD7328B0068A7CB /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		AD5DBCA9B50D855030A0C26C /* Pods_SendAsPost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendAsPost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19F0F75306E8D6BA70EC33B /* Pods-Send As Post Share Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post Share Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post Share Extension/Pods-Send As Post Share Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		B38FAE3D05746BFD345B47D2 /* Pods-Send As Post Share Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post Share Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post Share Extension/Pods-Send As Post Share Extension.release.xcconfig"; sourceTree = "<group>"; };
+		C7403D5090A61DAECA774CDF /* Pods-SendAsPost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendAsPost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendAsPost/Pods-SendAsPost.debug.xcconfig"; sourceTree = "<group>"; };
+		D93EE95E0C80AE9E6D322CC7 /* Pods-SendAsPost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendAsPost.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendAsPost/Pods-SendAsPost.release.xcconfig"; sourceTree = "<group>"; };
 		DD415D4F496AEB614DA1C257 /* Pods-Send As Post.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Send As Post.release.xcconfig"; path = "Pods/Target Support Files/Pods-Send As Post/Pods-Send As Post.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96CF90B808EF87455FFF64E4 /* Pods_Send_As_Post.framework in Frameworks */,
+				E2ACC1C6525FB517626F0711 /* Pods_SendAsPost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51B9D87A1583DDB7BE27065E /* Pods_Send_As_Post_Share_Extension.framework in Frameworks */,
+				F2EE4721C072C43A28E00646 /* Pods_SendAsPostShareExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +118,8 @@
 			children = (
 				6C2C74150AA18916633C5D9D /* Pods_Send_As_Post.framework */,
 				1FCA628BE9B4566E27761B48 /* Pods_Send_As_Post_Share_Extension.framework */,
+				AD5DBCA9B50D855030A0C26C /* Pods_SendAsPost.framework */,
+				88C526780CFB8EA189CE5FB7 /* Pods_SendAsPostShareExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -123,6 +131,10 @@
 				DD415D4F496AEB614DA1C257 /* Pods-Send As Post.release.xcconfig */,
 				B19F0F75306E8D6BA70EC33B /* Pods-Send As Post Share Extension.debug.xcconfig */,
 				B38FAE3D05746BFD345B47D2 /* Pods-Send As Post Share Extension.release.xcconfig */,
+				C7403D5090A61DAECA774CDF /* Pods-SendAsPost.debug.xcconfig */,
+				D93EE95E0C80AE9E6D322CC7 /* Pods-SendAsPost.release.xcconfig */,
+				248035CCA0B029DE09F94D48 /* Pods-SendAsPostShareExtension.debug.xcconfig */,
+				8569578046C9B36346451632 /* Pods-SendAsPostShareExtension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -130,8 +142,8 @@
 		A12810231FB6CFE2001B01E4 = {
 			isa = PBXGroup;
 			children = (
-				A128102E1FB6CFE2001B01E4 /* Send As Post */,
-				A12810461FB6D06E001B01E4 /* Send As Post Share Extension */,
+				A128102E1FB6CFE2001B01E4 /* SendAsPost */,
+				A12810461FB6D06E001B01E4 /* SendAsPostShareExtension */,
 				A128102D1FB6CFE2001B01E4 /* Products */,
 				83082F12552C501185549BE1 /* Pods */,
 				1E346001BC499C57D0D982CB /* Frameworks */,
@@ -141,16 +153,16 @@
 		A128102D1FB6CFE2001B01E4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A128102C1FB6CFE2001B01E4 /* Send As Post.app */,
-				A12810451FB6D06D001B01E4 /* Send As Post Share Extension.appex */,
+				A128102C1FB6CFE2001B01E4 /* SendAsPost.app */,
+				A12810451FB6D06D001B01E4 /* SendAsPostShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A128102E1FB6CFE2001B01E4 /* Send As Post */ = {
+		A128102E1FB6CFE2001B01E4 /* SendAsPost */ = {
 			isa = PBXGroup;
 			children = (
-				A12810591FB6D6BA001B01E4 /* Send As Post.entitlements */,
+				A12810591FB6D6BA001B01E4 /* SendAsPost.entitlements */,
 				A140A1951FD7200B0068A7CB /* AboutViewController.swift */,
 				A140A1931FD70C940068A7CB /* DefaultFont.swift */,
 				A13447CC1FB730290098F365 /* EditParamViewController.swift */,
@@ -165,13 +177,13 @@
 				A12393061FD73638006859A0 /* ParametersViewController.swift */,
 				A12393071FD73638006859A0 /* ParametersViewController.xib */,
 			);
-			path = "Send As Post";
+			path = SendAsPost;
 			sourceTree = "<group>";
 		};
-		A12810461FB6D06E001B01E4 /* Send As Post Share Extension */ = {
+		A12810461FB6D06E001B01E4 /* SendAsPostShareExtension */ = {
 			isa = PBXGroup;
 			children = (
-				A12810581FB6D697001B01E4 /* Send As Post Share Extension.entitlements */,
+				A12810581FB6D697001B01E4 /* SendAsPostShareExtension.entitlements */,
 				A12810541FB6D5C0001B01E4 /* AddUrlViewController.swift */,
 				A12810471FB6D06E001B01E4 /* ShareViewController.swift */,
 				A12810561FB6D5CD001B01E4 /* SelectUrlViewController.swift */,
@@ -180,15 +192,15 @@
 				A12810491FB6D06E001B01E4 /* MainInterface.storyboard */,
 				A128104C1FB6D06E001B01E4 /* Info.plist */,
 			);
-			path = "Send As Post Share Extension";
+			path = SendAsPostShareExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A128102B1FB6CFE2001B01E4 /* Send As Post */ = {
+		A128102B1FB6CFE2001B01E4 /* SendAsPost */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A128103E1FB6CFE2001B01E4 /* Build configuration list for PBXNativeTarget "Send As Post" */;
+			buildConfigurationList = A128103E1FB6CFE2001B01E4 /* Build configuration list for PBXNativeTarget "SendAsPost" */;
 			buildPhases = (
 				4A86CD4CD8D0F5F7177158B9 /* [CP] Check Pods Manifest.lock */,
 				A12810281FB6CFE2001B01E4 /* Sources */,
@@ -203,14 +215,14 @@
 			dependencies = (
 				A128104E1FB6D06E001B01E4 /* PBXTargetDependency */,
 			);
-			name = "Send As Post";
+			name = SendAsPost;
 			productName = "Send As Post";
-			productReference = A128102C1FB6CFE2001B01E4 /* Send As Post.app */;
+			productReference = A128102C1FB6CFE2001B01E4 /* SendAsPost.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A12810441FB6D06D001B01E4 /* Send As Post Share Extension */ = {
+		A12810441FB6D06D001B01E4 /* SendAsPostShareExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A12810501FB6D06E001B01E4 /* Build configuration list for PBXNativeTarget "Send As Post Share Extension" */;
+			buildConfigurationList = A12810501FB6D06E001B01E4 /* Build configuration list for PBXNativeTarget "SendAsPostShareExtension" */;
 			buildPhases = (
 				4973C278C058793993A79782 /* [CP] Check Pods Manifest.lock */,
 				A12810411FB6D06D001B01E4 /* Sources */,
@@ -222,9 +234,9 @@
 			);
 			dependencies = (
 			);
-			name = "Send As Post Share Extension";
+			name = SendAsPostShareExtension;
 			productName = "Send As Post Share Extension";
-			productReference = A12810451FB6D06D001B01E4 /* Send As Post Share Extension.appex */;
+			productReference = A12810451FB6D06D001B01E4 /* SendAsPostShareExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -257,7 +269,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A12810271FB6CFE2001B01E4 /* Build configuration list for PBXProject "Send As Post" */;
+			buildConfigurationList = A12810271FB6CFE2001B01E4 /* Build configuration list for PBXProject "SendAsPost" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -270,8 +282,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A128102B1FB6CFE2001B01E4 /* Send As Post */,
-				A12810441FB6D06D001B01E4 /* Send As Post Share Extension */,
+				A128102B1FB6CFE2001B01E4 /* SendAsPost */,
+				A12810441FB6D06D001B01E4 /* SendAsPostShareExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -312,7 +324,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Send As Post Share Extension/Pods-Send As Post Share Extension-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendAsPostShareExtension/Pods-SendAsPostShareExtension-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4973C278C058793993A79782 /* [CP] Check Pods Manifest.lock */ = {
@@ -321,13 +333,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SendAsPostShareExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4A86CD4CD8D0F5F7177158B9 /* [CP] Check Pods Manifest.lock */ = {
@@ -336,13 +351,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SendAsPost-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		69BE90477E85DCA48CF53982 /* [CP] Copy Pods Resources */ = {
@@ -357,7 +375,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Send As Post/Pods-Send As Post-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendAsPost/Pods-SendAsPost-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B6C630714DEB6371C4A6D393 /* [CP] Embed Pods Frameworks */ = {
@@ -366,13 +384,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SendAsPost/Pods-SendAsPost-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Send As Post/Pods-Send As Post-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendAsPost/Pods-SendAsPost-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -409,7 +430,7 @@
 /* Begin PBXTargetDependency section */
 		A128104E1FB6D06E001B01E4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A12810441FB6D06D001B01E4 /* Send As Post Share Extension */;
+			target = A12810441FB6D06D001B01E4 /* SendAsPostShareExtension */;
 			targetProxy = A128104D1FB6D06E001B01E4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -551,14 +572,14 @@
 		};
 		A128103F1FB6CFE2001B01E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CB2F3B155EBCF97F0519A9C /* Pods-Send As Post.debug.xcconfig */;
+			baseConfigurationReference = C7403D5090A61DAECA774CDF /* Pods-SendAsPost.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Send As Post/Send As Post.entitlements";
+				CODE_SIGN_ENTITLEMENTS = SendAsPost/SendAsPost.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8TW9V9HVES;
-				INFOPLIST_FILE = "Send As Post/Info.plist";
+				INFOPLIST_FILE = SendAsPost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.SendAsPost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -569,14 +590,14 @@
 		};
 		A12810401FB6CFE2001B01E4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD415D4F496AEB614DA1C257 /* Pods-Send As Post.release.xcconfig */;
+			baseConfigurationReference = D93EE95E0C80AE9E6D322CC7 /* Pods-SendAsPost.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Send As Post/Send As Post.entitlements";
+				CODE_SIGN_ENTITLEMENTS = SendAsPost/SendAsPost.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8TW9V9HVES;
-				INFOPLIST_FILE = "Send As Post/Info.plist";
+				INFOPLIST_FILE = SendAsPost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.SendAsPost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -587,12 +608,12 @@
 		};
 		A12810511FB6D06E001B01E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B19F0F75306E8D6BA70EC33B /* Pods-Send As Post Share Extension.debug.xcconfig */;
+			baseConfigurationReference = 248035CCA0B029DE09F94D48 /* Pods-SendAsPostShareExtension.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Send As Post Share Extension/Send As Post Share Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = SendAsPostShareExtension/SendAsPostShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8TW9V9HVES;
-				INFOPLIST_FILE = "Send As Post Share Extension/Info.plist";
+				INFOPLIST_FILE = SendAsPostShareExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.SendAsPost.SendAsPostShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -604,12 +625,12 @@
 		};
 		A12810521FB6D06E001B01E4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B38FAE3D05746BFD345B47D2 /* Pods-Send As Post Share Extension.release.xcconfig */;
+			baseConfigurationReference = 8569578046C9B36346451632 /* Pods-SendAsPostShareExtension.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Send As Post Share Extension/Send As Post Share Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = SendAsPostShareExtension/SendAsPostShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8TW9V9HVES;
-				INFOPLIST_FILE = "Send As Post Share Extension/Info.plist";
+				INFOPLIST_FILE = SendAsPostShareExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.SendAsPost.SendAsPostShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -622,7 +643,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A12810271FB6CFE2001B01E4 /* Build configuration list for PBXProject "Send As Post" */ = {
+		A12810271FB6CFE2001B01E4 /* Build configuration list for PBXProject "SendAsPost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A128103C1FB6CFE2001B01E4 /* Debug */,
@@ -631,7 +652,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A128103E1FB6CFE2001B01E4 /* Build configuration list for PBXNativeTarget "Send As Post" */ = {
+		A128103E1FB6CFE2001B01E4 /* Build configuration list for PBXNativeTarget "SendAsPost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A128103F1FB6CFE2001B01E4 /* Debug */,
@@ -640,7 +661,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A12810501FB6D06E001B01E4 /* Build configuration list for PBXNativeTarget "Send As Post Share Extension" */ = {
+		A12810501FB6D06E001B01E4 /* Build configuration list for PBXNativeTarget "SendAsPostShareExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A12810511FB6D06E001B01E4 /* Debug */,

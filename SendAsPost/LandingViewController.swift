@@ -14,7 +14,7 @@ class LandingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Send as POST"
+        self.title = "Send As POST"
         
         let setupButton = UIButton()
         self.view.addSubview(setupButton)
