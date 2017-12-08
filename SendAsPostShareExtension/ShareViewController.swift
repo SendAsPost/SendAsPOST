@@ -199,7 +199,9 @@ class ShareViewController: SLComposeServiceViewController {
         request.httpMethod = "POST"
         
         var additionalParameters = defaults?.dictionary(forKey: "additionalParams") as? [String : String] ?? [:]
-        additionalParameters["caption"] = self.contentText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if imageData != nil {
+            additionalParameters["caption"] = self.contentText.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
         if parameters != nil {
             additionalParameters.merge(parameters!, uniquingKeysWith: { (key1, key2) -> String in
                 parameters![key2]!
