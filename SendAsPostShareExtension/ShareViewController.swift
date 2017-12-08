@@ -21,7 +21,7 @@ struct BackgroundUploader {
         if let info = Bundle.main.infoDictionary {
             let appVersion = info["CFBundleShortVersionString"] as? String ?? "Unknown version"
             sessionConfig.httpAdditionalHeaders = [
-                "User-Agent": "Share As Post Extension \(appVersion)"
+                "User-Agent": "Send As POST Extension \(appVersion)"
             ]
         }
         return URLSession(configuration: sessionConfig)
