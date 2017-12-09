@@ -36,7 +36,7 @@ class ConfigViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func additionalParams() -> [String : String] {
-        let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
+        let defaults = UserDefaults.shared()
         return defaults?.dictionary(forKey: "additionalParams") as? [String:String] ?? [:]
     }
     

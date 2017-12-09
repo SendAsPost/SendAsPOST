@@ -49,15 +49,10 @@ class AddUrlViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func validUrl(urlString: String?) -> Bool {
-        let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_:])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
-        return NSPredicate(format: "SELF MATCHES %@", urlRegEx).evaluate(with: urlString)
-    }
-    
+
     @objc func addUrlButtonPressed() {
-        if self.validUrl(urlString: self.urlTextField.text) {
-            let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
+        if self.urlTextField.text!.validUrl() {
+            let defaults = UserDefaults.shared()
             defaults?.set(self.urlTextField.text, forKey: "defaultUrl")
             var urls = defaults?.array(forKey: "urls") as? [String] ?? []
             urls.append(self.urlTextField.text!)

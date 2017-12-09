@@ -42,7 +42,7 @@ class SelectUrlViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func urlsList() -> Array<String> {
-        let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
+        let defaults = UserDefaults.shared()
         return defaults?.array(forKey: "urls") as? [String] ?? []
     }
     
@@ -59,7 +59,7 @@ class SelectUrlViewController: UIViewController, UITableViewDataSource, UITableV
         if indexPath.row < self.urlsList().count {
             let url = self.urlsList()[indexPath.row]
             cell.textLabel?.text = url
-            let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
+            let defaults = UserDefaults.shared()
             if url == defaults?.string(forKey: "defaultUrl") {
                 cell.accessoryType = .checkmark
             } else {
@@ -74,7 +74,7 @@ class SelectUrlViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row < self.urlsList().count {
-            let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
+            let defaults = UserDefaults.shared()
             defaults?.set(self.urlsList()[indexPath.row], forKey: "defaultUrl")
             defaults?.synchronize()
             self.navigationController?.popViewController(animated: true)

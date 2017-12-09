@@ -94,7 +94,7 @@ class EditParamViewController: UIViewController {
             formValid = false
         }
         if !formValid { return }
-        let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
+        let defaults = UserDefaults.shared()
         var params = self.additionalParams()
         params[self.paramTextField.text!] = self.valueTextField.text
         if self.originalKey != self.paramTextField.text && self.originalKey != nil {
@@ -106,7 +106,7 @@ class EditParamViewController: UIViewController {
     }
     
     @objc func deleteButtonPressed() {
-        let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
+        let defaults = UserDefaults.shared()
         var params = self.additionalParams()
         params.removeValue(forKey: self.key!)
         defaults?.set(params, forKey: "additionalParams")
@@ -115,7 +115,7 @@ class EditParamViewController: UIViewController {
     }
     
     func additionalParams() -> [String : String] {
-        let defaults = UserDefaults(suiteName: "group.sendaspost.sendaspost")
+        let defaults = UserDefaults.shared()
         return defaults?.dictionary(forKey: "additionalParams") as? [String:String] ?? [:]
     }
 
