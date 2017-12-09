@@ -6,11 +6,4 @@ The share extension appears on the list when a user taps the Share icon for a ph
 
 Opening the main application allows you to send extra parameters, e.g. a shared secret for authentication, with every POST request.
 
-### Known issues
 
-When using Reader View on mobile Safari, the selected text doesn't make it through the preprocessing javascript. Need to investigate if this is intentional on Apple's part, or possibly a bug. 
-
-### To Do
-
-- More documentation
-- [sendaspost.com](sendaspost.com)
