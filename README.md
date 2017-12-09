@@ -1,9 +1,18 @@
 ## SendAsPOST
-Share extension for iOS to send photos and links as POST requests
+Send As POST is an app for iOS and macOS that adds a share extension to images and web pages.
 
-###
-The share extension appears on the list when a user taps the Share icon for a photo or a web page. Depending on what's being shared, the extension will send different parameters with the POST request: `caption` and `image` for a photo and `comment`, `title`, `url`, and `quote` for a URL. 
+Sharing via Send as POST will create a POST request with these parameters:
 
-Opening the main application allows you to send extra parameters, e.g. a shared secret for authentication, with every POST request.
+For images:
 
+- `image`: the image data
+- `caption` (optional): the text provided in the share card.
 
+For links:
+
+- `url`: the URL of the page
+- `quote` (optional): the highlighted text on the page, if any
+- `comment` (optional): the text added in the sharing card, if any
+- `title` (optional): the text specified in the title field of the sharing card, if any. Defaults to the title of the page being shared
+
+Additional parameters, e.g. a shared secret, can be configured in the app. They will be sent with each POST request.
