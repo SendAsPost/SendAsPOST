@@ -1,4 +1,4 @@
-## SendAsPOST
+## Send As POST
 Send As POST is an app for iOS and macOS that adds a share extension to images and web pages.
 
 Sharing via Send as POST will create a POST request with these parameters:
