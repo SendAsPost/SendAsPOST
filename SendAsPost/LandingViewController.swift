@@ -33,7 +33,7 @@ class LandingViewController: UIViewController {
                 make.left.equalTo(self.margin)
                 make.right.equalTo(-self.margin)
             }
-            make.height.equalTo(42)
+            make.height.equalTo(62)
         }
         
         let paramsButton = UIButton()
@@ -59,6 +59,18 @@ class LandingViewController: UIViewController {
             make.top.equalTo(paramsButton.snp.bottom).offset(self.margin)
             make.height.left.right.equalTo(setupButton)
         }
+        
+        let tipJarButton = UIButton()
+        self.view.addSubview(tipJarButton)
+        tipJarButton.setTitle("Tip jar", for: .normal)
+        tipJarButton.titleLabel?.font = UIFont.defaultFont()
+        tipJarButton.backgroundColor = .darkGray
+        tipJarButton.addTarget(self, action: #selector(self.tipJarButtonPressed), for: .touchUpInside)
+        tipJarButton.setTitleColor(.white, for: .normal)
+        tipJarButton.snp.makeConstraints { (make) in
+            make.top.equalTo(aboutButton.snp.bottom).offset(self.margin)
+            make.height.left.right.equalTo(setupButton)
+        }
     }
     
     @objc func setupButtonPressed() {
@@ -71,5 +83,9 @@ class LandingViewController: UIViewController {
     
     @objc func aboutButtonPressed() {
         self.navigationController?.pushViewController(AboutViewController(), animated: true)
+    }
+    
+    @objc func tipJarButtonPressed() {
+        self.navigationController?.pushViewController(TipJarViewController(), animated: true)
     }
 }

@@ -8,11 +8,13 @@
 //
 
 import UIKit
+import StoreKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, SKProductsRequestDelegate {
 
     var window: UIWindow?
+    var storeKitProducts: [SKProduct] = []
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -20,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = attributes
         UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
         UINavigationBar.appearance().tintColor = .darkGray
+        
+        let request = SKProductsRequest(productIdentifiers: ["TIPIOS1", "TIPIOS5", "TIPIOS20"])
+        request.delegate = self
+        request.start()
         return true
     }
 
@@ -43,6 +49,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        self.storeKitProducts = response.products
     }
 }
 

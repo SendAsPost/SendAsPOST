@@ -27,6 +27,7 @@
 		A140A1961FD7200B0068A7CB /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A140A1951FD7200B0068A7CB /* AboutViewController.swift */; };
 		A140A1981FD7328B0068A7CB /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A140A1971FD7328B0068A7CB /* LandingViewController.swift */; };
 		A1ACF0F31FFFDCA500CBCBA6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1ACF0F21FFFDCA500CBCBA6 /* StoreKit.framework */; };
+		A1ACF0F51FFFF7F800CBCBA6 /* TipJarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACF0F41FFFF7F800CBCBA6 /* TipJarViewController.swift */; };
 		A1DDD19F1FDB8B94009EBC27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DDD19E1FDB8B94009EBC27 /* AppDelegate.swift */; };
 		A1DDD1A11FDB8B94009EBC27 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DDD1A01FDB8B94009EBC27 /* MainViewController.swift */; };
 		A1DDD1A31FDB8B94009EBC27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1DDD1A21FDB8B94009EBC27 /* Assets.xcassets */; };
@@ -127,6 +128,7 @@
 		A140A1951FD7200B0068A7CB /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A140A1971FD7328B0068A7CB /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		A1ACF0F21FFFDCA500CBCBA6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		A1ACF0F41FFFF7F800CBCBA6 /* TipJarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarViewController.swift; sourceTree = "<group>"; };
 		A1DDD19C1FDB8B94009EBC27 /* Send As POST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Send As POST.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1DDD19E1FDB8B94009EBC27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1DDD1A01FDB8B94009EBC27 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				A12810311FB6CFE2001B01E4 /* ConfigViewController.swift */,
 				A140A1971FD7328B0068A7CB /* LandingViewController.swift */,
 				A12393021FD733C8006859A0 /* SetupViewController.swift */,
+				A1ACF0F41FFFF7F800CBCBA6 /* TipJarViewController.swift */,
 				A12393061FD73638006859A0 /* ParametersViewController.swift */,
 				A12393071FD73638006859A0 /* ParametersViewController.xib */,
 				A12810331FB6CFE2001B01E4 /* Main.storyboard */,
@@ -590,6 +593,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1ACF0F51FFFF7F800CBCBA6 /* TipJarViewController.swift in Sources */,
 				A1DDD1D91FDC7277009EBC27 /* SharedDefaults.swift in Sources */,
 				A140A1961FD7200B0068A7CB /* AboutViewController.swift in Sources */,
 				A140A1981FD7328B0068A7CB /* LandingViewController.swift in Sources */,
