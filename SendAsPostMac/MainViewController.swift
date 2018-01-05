@@ -9,12 +9,16 @@
 import Cocoa
 import StoreKit
 
-class MainViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, SKProductsRequestDelegate {
+class MainViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     
     var editingCellWithValue: String?
     var storeKitProducts: Array<SKProduct> = []
     
     @IBOutlet var paramsTable: NSTableView!
+    @IBOutlet var tipJar1Button: NSButton!
+    @IBOutlet var tipJar20Button: NSButton!
+    @IBOutlet var tipJar5Button: NSButton!
+    @IBOutlet var tipLabel: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +31,11 @@ class MainViewController: NSViewController, NSTableViewDelegate, NSTableViewData
         let request = SKProductsRequest(productIdentifiers: ["TIPMAC1", "TIPMAC5", "TIPMAC20"])
         request.delegate = self
         request.start()
+        SKPaymentQueue.default().add(self)
+    }
+    
+    deinit {
+        SKPaymentQueue.default().remove(self)
     }
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
@@ -128,6 +137,12 @@ class MainViewController: NSViewController, NSTableViewDelegate, NSTableViewData
         defaults.synchronize()
         self.editingCellWithValue = nil
         return true
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        transactions.forEach { (transaction) in
+            //placeholder
+        }
     }
 }
 

@@ -256,6 +256,10 @@ Visit sendaspost.com for more donation options.</string>
                     </view>
                     <connections>
                         <outlet property="paramsTable" destination="rLF-uF-3UM" id="fMl-p7-7c6"/>
+                        <outlet property="tipJar1Button" destination="g4v-pc-8YU" id="lCY-sn-gkH"/>
+                        <outlet property="tipJar20Button" destination="CjW-Kr-S1F" id="8oh-6T-ilB"/>
+                        <outlet property="tipJar5Button" destination="auF-3f-j90" id="Bfb-76-oyW"/>
+                        <outlet property="tipLabel" destination="uIt-mo-K96" id="f3Q-kk-R0u"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
