@@ -26,6 +26,7 @@
 		A140A1941FD70C940068A7CB /* DefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = A140A1931FD70C940068A7CB /* DefaultFont.swift */; };
 		A140A1961FD7200B0068A7CB /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A140A1951FD7200B0068A7CB /* AboutViewController.swift */; };
 		A140A1981FD7328B0068A7CB /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A140A1971FD7328B0068A7CB /* LandingViewController.swift */; };
+		A1ACF0F31FFFDCA500CBCBA6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1ACF0F21FFFDCA500CBCBA6 /* StoreKit.framework */; };
 		A1DDD19F1FDB8B94009EBC27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DDD19E1FDB8B94009EBC27 /* AppDelegate.swift */; };
 		A1DDD1A11FDB8B94009EBC27 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DDD1A01FDB8B94009EBC27 /* MainViewController.swift */; };
 		A1DDD1A31FDB8B94009EBC27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1DDD1A21FDB8B94009EBC27 /* Assets.xcassets */; };
@@ -125,6 +126,7 @@
 		A140A1931FD70C940068A7CB /* DefaultFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFont.swift; sourceTree = "<group>"; };
 		A140A1951FD7200B0068A7CB /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A140A1971FD7328B0068A7CB /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		A1ACF0F21FFFDCA500CBCBA6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		A1DDD19C1FDB8B94009EBC27 /* Send As POST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Send As POST.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1DDD19E1FDB8B94009EBC27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1DDD1A01FDB8B94009EBC27 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1ACF0F31FFFDCA500CBCBA6 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +191,7 @@
 		1E346001BC499C57D0D982CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1ACF0F21FFFDCA500CBCBA6 /* StoreKit.framework */,
 				6C2C74150AA18916633C5D9D /* Pods_Send_As_Post.framework */,
 				1FCA628BE9B4566E27761B48 /* Pods_Send_As_Post_Share_Extension.framework */,
 				AD5DBCA9B50D855030A0C26C /* Pods_SendAsPost.framework */,
@@ -420,6 +424,11 @@
 					A1DDD19B1FDB8B94009EBC27 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					A1DDD1AF1FDB8C58009EBC27 = {
 						CreatedOnToolsVersion = 9.2;
@@ -883,7 +892,7 @@
 				INFOPLIST_FILE = SendAsPostMac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.SendAsPostMac;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.sendaspostmac;
 				PRODUCT_NAME = "Send As POST";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 4.0;
@@ -903,7 +912,7 @@
 				INFOPLIST_FILE = SendAsPostMac/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.SendAsPostMac;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.sendaspostmac;
 				PRODUCT_NAME = "Send As POST";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 4.0;
@@ -921,7 +930,7 @@
 				INFOPLIST_FILE = SendAsPostMacShareExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.SendAsPostMac.SendAsPostMacShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.sendaspostmac.SendAsPostMacShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -940,7 +949,7 @@
 				INFOPLIST_FILE = SendAsPostMacShareExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.SendAsPostMac.SendAsPostMacShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendaspost.sendaspostmac.SendAsPostMacShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;

@@ -7,10 +7,12 @@
 //
 
 import Cocoa
+import StoreKit
 
-class MainViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
+class MainViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, SKProductsRequestDelegate {
     
     var editingCellWithValue: String?
+    var storeKitProducts: Array<SKProduct> = []
     
     @IBOutlet var paramsTable: NSTableView!
     
@@ -21,7 +23,41 @@ class MainViewController: NSViewController, NSTableViewDelegate, NSTableViewData
         self.paramsTable.dataSource = self
         
         self.paramsTable.tableColumns[0].headerCell.font = NSFont(name: "Menlo", size: 28)
+        
+        let request = SKProductsRequest(productIdentifiers: ["TIPMAC1", "TIPMAC5", "TIPMAC20"])
+        request.delegate = self
+        request.start()
     }
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        self.storeKitProducts = response.products
+    }
+    
+    @IBAction func tipJar1Clicked(_ sender: NSButton) {
+        self.tipJarClicked(identifier: "TIPMAC1")
+    }
+    
+    @IBAction func tipJar5Clicked(_ sender: NSButton) {
+        self.tipJarClicked(identifier: "TIPMAC5")
+    }
+    
+    @IBAction func tipJar20Clicked(_ sender: NSButton) {
+        self.tipJarClicked(identifier: "TIPMAC20")
+    }
+    
+    func tipJarClicked(identifier: String) {
+        var prod: SKProduct? = nil
+        self.storeKitProducts.forEach { (product) in
+            if product.productIdentifier == identifier {
+                prod = product
+            }
+        }
+        if prod == nil { return }
+        let payment = SKMutablePayment(product: prod!)
+        payment.quantity = 1
+        SKPaymentQueue.default().add(payment)
+    }
+    
     
     @IBAction func doubleClicked(_ sender: NSTableView) {
         let row = sender.clickedRow
